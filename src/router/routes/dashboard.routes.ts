@@ -105,6 +105,14 @@ export const dashboardRoutes: RouteRecordRaw[] = [
           title: 'Help Center',
         },
       },
+      {
+        path: 'coming-soon',
+        name: 'coming-soon',
+        component: () => import('@/features/coming-soon/index.vue'),
+        meta: {
+          title: 'Coming Soon',
+        },
+      },
     ],
   },
 ]
