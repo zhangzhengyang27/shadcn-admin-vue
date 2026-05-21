@@ -3,12 +3,14 @@ import { useLayout } from '@/composables/useLayout'
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarHeader,
   SidebarRail,
 } from '@/components/ui/sidebar'
 // import AppTitle from './AppTitle.vue'
 import { sidebarData } from './data/sidebar-data'
 import NavGroup from './NavGroup.vue'
+import NavUser from './NavUser.vue'
 import TeamSwitcher from './TeamSwitcher.vue'
 
 const { collapsible, variant } = useLayout()
@@ -31,6 +33,9 @@ const { collapsible, variant } = useLayout()
         :items="group.items"
       />
     </SidebarContent>
+    <SidebarFooter>
+      <NavUser :user="sidebarData.user" />
+    </SidebarFooter>
     <SidebarRail />
   </Sidebar>
 </template>
