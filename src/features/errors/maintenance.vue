@@ -36,3 +36,4 @@ import Main from '@/components/layout/Main.vue'
 import ProfileDropdown from '@/components/profile-dropdown.vue'
 import Search from '@/components/search.vue'
 import ThemeSwitch from '@/components/theme-switch.vue'
+</script>

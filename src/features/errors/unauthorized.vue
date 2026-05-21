@@ -48,3 +48,4 @@ const goBack = () => {
 const goHome = () => {
   router.push('/')
 }
+</script>

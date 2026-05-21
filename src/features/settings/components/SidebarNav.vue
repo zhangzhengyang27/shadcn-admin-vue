@@ -2,7 +2,6 @@
 import { ref, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { cn } from '@/lib/utils'
-import { Button } from '@/components/ui/button'
 import {
   Select,
   SelectContent,
@@ -70,35 +69,30 @@ const handleSelect = (value: AcceptableValue) => {
     </div>
 
     <!-- Desktop Sidebar -->
-    <div class="hidden w-full min-w-40 bg-background px-1 py-2 md:block">
-      <nav
+    <nav
+      :class="
+        cn(
+          'flex flex-col gap-0.5',
+          props.className
+        )
+      "
+    >
+      <RouterLink
+        v-for="item in items"
+        :key="item.href"
+        :to="item.href"
         :class="
           cn(
-            'flex flex-col gap-1',
-            props.className
+            'flex h-9 items-center gap-2.5 rounded-md px-2.5 text-sm transition-colors',
+            currentPath === item.href
+              ? 'bg-muted font-medium text-foreground'
+              : 'text-muted-foreground hover:bg-muted/50 hover:text-foreground'
           )
         "
       >
-        <RouterLink
-          v-for="item in items"
-          :key="item.href"
-          :to="item.href"
-          :class="
-            cn(
-              Button.variant?.({ variant: 'ghost' }) || '',
-              currentPath === item.href
-                ? 'bg-muted font-semibold'
-                : 'text-muted-foreground hover:text-foreground hover:bg-muted/50',
-              'justify-start h-auto py-2 px-3'
-            )
-          "
-        >
-          <span class="mr-3 shrink-0">
-            <component :is="iconMap[item.icon]" :size="18" />
-          </span>
-          {{ item.title }}
-        </RouterLink>
-      </nav>
-    </div>
+        <component :is="iconMap[item.icon]" :size="16" />
+        {{ item.title }}
+      </RouterLink>
+    </nav>
   </div>
 </template>
