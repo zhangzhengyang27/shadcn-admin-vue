@@ -1,26 +1,26 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import type { RouteRecordRaw } from 'vue-router'
+import { createRouter, createWebHistory } from "vue-router"
+import type { RouteRecordRaw } from "vue-router"
 
-import { setupAuthGuards } from './guards/auth.guard'
+import { setupAuthGuards } from "./guards/auth.guard"
 
 const routes: RouteRecordRaw[] = [
   {
-    path: '/',
-    component: () => import('@/App.vue'),
+    path: "/",
+    component: () => import("@/App.vue"),
     children: [
       ...authRoutes,
       ...dashboardRoutes,
       ...errorRoutes,
       {
-        path: '/:pathMatch(.*)*',
-        name: 'not-found',
-        component: () => import('@/features/errors/not-found.vue'),
+        path: "/:pathMatch(.*)*",
+        name: "not-found",
+        component: () => import("@/features/errors/not-found.vue"),
         meta: {
-          title: 'Page Not Found',
-        },
-      },
-    ],
-  },
+          title: "Page Not Found"
+        }
+      }
+    ]
+  }
 ]
 
 const router = createRouter({
@@ -32,13 +32,13 @@ const router = createRouter({
     } else {
       return { top: 0 }
     }
-  },
+  }
 })
 
 setupAuthGuards(router)
 
 export default router
 
-import { authRoutes } from './routes/auth.routes'
-import { dashboardRoutes } from './routes/dashboard.routes'
-import { errorRoutes } from './routes/error.routes'
+import { authRoutes } from "./routes/auth.routes"
+import { dashboardRoutes } from "./routes/dashboard.routes"
+import { errorRoutes } from "./routes/error.routes"

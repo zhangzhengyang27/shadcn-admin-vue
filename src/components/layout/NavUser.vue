@@ -44,10 +44,8 @@ const { open: _open, setOpen } = useDialogState()
     <SidebarMenuItem>
       <DropdownMenu>
         <DropdownMenuTrigger as-child>
-          <SidebarMenuButton
-            size="lg"
-            class="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
-          >
+          <SidebarMenuButton size="lg"
+            class="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground">
             <Avatar class="h-8 w-8 rounded-lg">
               <AvatarImage :src="user.avatar" :alt="user.name" />
               <AvatarFallback class="rounded-lg">SN</AvatarFallback>
@@ -59,12 +57,8 @@ const { open: _open, setOpen } = useDialogState()
             <ChevronsUpDown class="ms-auto size-4" />
           </SidebarMenuButton>
         </DropdownMenuTrigger>
-        <DropdownMenuContent
-          class="w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg"
-          :side="isMobile ? 'bottom' : 'right'"
-          align="end"
-          :side-offset="4"
-        >
+        <DropdownMenuContent class="w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg"
+          :side="isMobile ? 'bottom' : 'right'" align="end" :side-offset="4">
           <DropdownMenuLabel class="p-0 font-normal">
             <div class="flex items-center gap-2 px-1 py-1.5 text-start text-sm">
               <Avatar class="h-8 w-8 rounded-lg">
@@ -106,10 +100,7 @@ const { open: _open, setOpen } = useDialogState()
             </DropdownMenuItem>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
-          <DropdownMenuItem
-            variant="destructive"
-            @click="() => setOpen(true)"
-          >
+          <DropdownMenuItem variant="destructive" @click="() => setOpen(true)">
             <LogOut />
             Log out
           </DropdownMenuItem>

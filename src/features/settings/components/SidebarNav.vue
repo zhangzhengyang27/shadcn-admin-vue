@@ -69,27 +69,18 @@ const handleSelect = (value: AcceptableValue) => {
     </div>
 
     <!-- Desktop Sidebar -->
-    <nav
-      :class="
-        cn(
-          'flex flex-col gap-0.5',
-          props.className
-        )
-      "
-    >
-      <RouterLink
-        v-for="item in items"
-        :key="item.href"
-        :to="item.href"
-        :class="
-          cn(
-            'flex h-9 items-center gap-2.5 rounded-md px-2.5 text-sm transition-colors',
-            currentPath === item.href
-              ? 'bg-muted font-medium text-foreground'
-              : 'text-muted-foreground hover:bg-muted/50 hover:text-foreground'
-          )
-        "
-      >
+    <nav :class="cn(
+      'flex flex-col gap-0.5',
+      props.className
+    )
+      ">
+      <RouterLink v-for="item in items" :key="item.href" :to="item.href" :class="cn(
+        'flex h-9 items-center gap-2.5 rounded-md px-2.5 text-sm transition-colors',
+        currentPath === item.href
+          ? 'bg-muted font-medium text-foreground'
+          : 'text-muted-foreground hover:bg-muted/50 hover:text-foreground'
+      )
+        ">
         <component :is="iconMap[item.icon]" :size="16" />
         {{ item.title }}
       </RouterLink>

@@ -26,14 +26,9 @@ const { collapsible, variant } = useLayout()
       <!-- <AppTitle /> -->
     </SidebarHeader>
     <SidebarContent>
-      <NavGroup
-        v-for="group in sidebarData.navGroups"
-        :key="group.title"
-        :title="group.title"
-        :items="group.items"
-      />
+      <NavGroup v-for="group in sidebarData.navGroups" :key="group.title" :title="group.title" :items="group.items" />
     </SidebarContent>
-    <SidebarFooter>
+    <SidebarFooter class="fixed bottom-4">
       <NavUser :user="sidebarData.user" />
     </SidebarFooter>
     <SidebarRail />
