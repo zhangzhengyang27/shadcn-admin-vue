@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { type Table } from '@tanstack/vue-table'
 import { AlertTriangle } from 'lucide-vue-next'
 import { toast } from 'sonner'
@@ -14,14 +14,14 @@ interface Props {
   table: Table<unknown>
 }
 
-defineProps<Props>()
+const props = defineProps<Props>()
 const emit = defineEmits<{
   'update:open': [value: boolean]
 }>()
 
 const CONFIRM_WORD = 'DELETE'
 const value = ref('')
-const selectedCount = 0
+const selectedCount = computed(() => props.table.getFilteredSelectedRowModel().rows.length)
 const confirmPlaceholder = `输入"${CONFIRM_WORD}"以确认`
 
 function handleDelete() {
@@ -32,13 +32,14 @@ function handleDelete() {
 
   emit('update:open', false)
 
-  const selectedRows = []
+  const selectedRows = props.table.getFilteredSelectedRowModel().rows
 
   toast.promise(sleep(2000), {
     loading: '正在删除任务...',
     success: () => {
       value.value = ''
-      return `${selectedRows.length} 个任务已删除`
+      props.table.resetRowSelection()
+      return `已删除 ${selectedRows.length} 个任务`
     },
     error: '删除失败',
   })
@@ -51,6 +52,7 @@ function handleDelete() {
     @update:open="(val) => { emit('update:open', val) }"
     form="tasks-multi-delete-form"
     :disabled="value.trim() !== CONFIRM_WORD"
+    destructive
   >
     <template #title>
       <span class="text-destructive">
@@ -68,12 +70,12 @@ function handleDelete() {
         class="space-y-4"
       >
         <p class="mb-2">
-          确定要删除选中的任务吗？<br />
+          您确定要删除选中的任务吗？<br />
           此操作无法撤销。
         </p>
 
         <Label class="my-4 flex flex-col items-start gap-1.5">
-          <span>输入"{{ CONFIRM_WORD }}"以确认：</span>
+          <span>输入"{{ CONFIRM_WORD }}"确认：</span>
           <Input
             v-model="value"
             :placeholder="confirmPlaceholder"

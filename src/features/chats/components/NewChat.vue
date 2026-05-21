@@ -2,7 +2,7 @@
   <Dialog :open="open" @update:open="handleOpenChange">
     <DialogContent class="sm:max-w-[600px]">
       <DialogHeader>
-        <DialogTitle>New Conversation</DialogTitle>
+        <DialogTitle>新建对话</DialogTitle>
       </DialogHeader>
 
       <div class="flex flex-col gap-4">
@@ -16,7 +16,7 @@
           >
             {{ user.fullName }}
             <button
-              class="ml-1 rounded-full ring-offset-background outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+              class="ms-1 rounded-full ring-offset-background outline-hidden focus:ring-2 focus:ring-ring focus:ring-offset-2"
               @click="removeUser(user.id)"
               @keydown.enter="removeUser(user.id)"
             >
@@ -26,9 +26,9 @@
         </div>
 
         <Command class="rounded-lg border">
-          <CommandInput placeholder="Search contacts..." class="text-foreground" />
+          <CommandInput placeholder="搜索联系人..." class="text-foreground" />
           <CommandList>
-            <CommandEmpty>No contacts found.</CommandEmpty>
+            <CommandEmpty>未找到联系人。</CommandEmpty>
             <CommandGroup>
               <CommandItem
                 v-for="user in users"
@@ -49,21 +49,14 @@
                   </div>
                 </div>
 
-                <Check
-                  v-if="isUserSelected(user.id)"
-                  class="h-4 w-4"
-                />
+                <Check v-if="isUserSelected(user.id)" class="h-4 w-4" />
               </CommandItem>
             </CommandGroup>
           </CommandList>
         </Command>
 
-        <Button
-          variant="default"
-          @click="submitChat"
-          :disabled="selectedUsers.length === 0"
-        >
-          Chat
+        <Button variant="default" @click="submitChat" :disabled="selectedUsers.length === 0">
+          对话
         </Button>
       </div>
     </DialogContent>

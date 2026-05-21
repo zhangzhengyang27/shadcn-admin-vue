@@ -13,7 +13,7 @@ const { setOpen } = useTasksContext()
       <Download :size="18" />
     </Button>
     <Button class="space-x-1" @click="setOpen('create')">
-      <span>新建</span>
+      <span>创建</span>
       <Plus :size="18" />
     </Button>
   </div>

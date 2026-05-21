@@ -114,28 +114,11 @@
           <CardDescription>主要流量来源</CardDescription>
         </CardHeader>
         <CardContent>
-          <ul class="space-y-3">
-            <li
-              v-for="item in sourceItems"
-              :key="item.name"
-              class="flex items-center justify-between gap-3"
-            >
-              <div class="min-w-0 flex-1">
-                <div class="mb-1 truncate text-xs text-muted-foreground">
-                  {{ item.name }}
-                </div>
-                <div class="h-2.5 w-full rounded-full bg-muted">
-                  <div
-                    class="h-2.5 rounded-full bg-primary"
-                    :style="{ width: `${Math.round((item.value / maxSource) * 100)}%` }"
-                  />
-                </div>
-              </div>
-              <div class="ps-2 text-xs font-medium tabular-nums">
-                {{ item.value }}
-              </div>
-            </li>
-          </ul>
+          <SimpleBarList
+            :items="sourceItems"
+            bar-class="bg-primary"
+            :value-formatter="(n: number) => `${n}`"
+          />
         </CardContent>
       </Card>
 
@@ -145,28 +128,11 @@
           <CardDescription>用户访问方式</CardDescription>
         </CardHeader>
         <CardContent>
-          <ul class="space-y-3">
-            <li
-              v-for="item in deviceItems"
-              :key="item.name"
-              class="flex items-center justify-between gap-3"
-            >
-              <div class="min-w-0 flex-1">
-                <div class="mb-1 truncate text-xs text-muted-foreground">
-                  {{ item.name }}
-                </div>
-                <div class="h-2.5 w-full rounded-full bg-muted">
-                  <div
-                    class="h-2.5 rounded-full bg-muted-foreground"
-                    :style="{ width: `${item.value}%` }"
-                  />
-                </div>
-              </div>
-              <div class="ps-2 text-xs font-medium tabular-nums">
-                {{ item.value }}%
-              </div>
-            </li>
-          </ul>
+          <SimpleBarList
+            :items="deviceItems"
+            bar-class="bg-muted-foreground"
+            :value-formatter="(n: number) => `${n}%`"
+          />
         </CardContent>
       </Card>
     </div>
@@ -182,6 +148,7 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import AnalyticsChart from './analytics-chart.vue'
+import SimpleBarList from './SimpleBarList.vue'
 
 const sourceItems = [
   { name: 'Direct', value: 512 },
@@ -195,6 +162,4 @@ const deviceItems = [
   { name: 'Mobile', value: 22 },
   { name: 'Tablet', value: 4 },
 ]
-
-const maxSource = Math.max(...sourceItems.map((i) => i.value))
 </script>

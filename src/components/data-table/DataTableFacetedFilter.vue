@@ -74,7 +74,7 @@ function toggleOption(optionValue: string) {
                 variant="secondary"
                 class="rounded-sm px-1 font-normal"
               >
-                {{ selectedValues.size }} selected
+                {{ selectedValues.size }} 已选
               </Badge>
             </template>
             <template v-else>
@@ -95,7 +95,7 @@ function toggleOption(optionValue: string) {
       <Command>
         <CommandInput :placeholder="title" />
         <CommandList>
-          <CommandEmpty>No results found.</CommandEmpty>
+          <CommandEmpty>未找到结果。</CommandEmpty>
           <CommandGroup>
             <CommandItem
               v-for="option in options"
@@ -137,7 +137,7 @@ function toggleOption(optionValue: string) {
                 @select.prevent="column?.setFilterValue(undefined)"
                 class="justify-center text-center"
               >
-                Clear Filter
+                清除筛选
               </CommandItem>
             </CommandGroup>
           </template>

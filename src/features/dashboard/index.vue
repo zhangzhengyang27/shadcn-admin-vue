@@ -17,7 +17,9 @@
     <Main>
       <div class="mb-2 flex items-center justify-between space-y-2">
         <h1 class="text-2xl font-bold tracking-tight">仪表盘</h1>
-        <Button>下载</Button>
+        <div class="flex items-center space-x-2">
+          <Button>下载</Button>
+        </div>
       </div>
 
       <Tabs orientation="vertical" default-value="overview" class="space-y-4">

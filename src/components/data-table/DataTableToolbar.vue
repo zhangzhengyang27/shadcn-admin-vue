@@ -25,7 +25,7 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  searchPlaceholder: 'Filter...',
+  searchPlaceholder: '筛选...',
   filters: () => [],
 })
 

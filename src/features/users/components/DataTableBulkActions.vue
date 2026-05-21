@@ -18,29 +18,33 @@ interface Props {
   table: Table<User>
 }
 
-defineProps<Props>()
+const props = defineProps<Props>()
 
 const showDeleteConfirm = ref(false)
 
 function handleBulkStatusChange(status: 'active' | 'inactive') {
-  const selectedRows = []
+  const selectedRows = (props.table as any).getFilteredSelectedRowModel().rows
+  const selectedUsers = selectedRows.map((row: any) => row.original as User)
+  ;(props.table as any).resetRowSelection()
   toast.promise(sleep(2000), {
-    loading: `${status === 'active' ? 'Activating' : 'Deactivating'} users...`,
+    loading: `${status === 'active' ? '正在激活' : '正在停用'}用户...`,
     success: () => {
-      return `${selectedRows.length} users ${status === 'active' ? 'activated' : 'deactivated'}`
+      return `已${status === 'active' ? '激活' : '停用'} ${selectedUsers.length} 个用户`
     },
-    error: `Error ${status === 'active' ? 'activating' : 'deactivating'} users`,
+    error: `${status === 'active' ? '激活' : '停用'}用户时出错`,
   })
 }
 
 function handleBulkInvite() {
-  const selectedRows = []
+  const selectedRows = (props.table as any).getFilteredSelectedRowModel().rows
+  const selectedUsers = selectedRows.map((row: any) => row.original as User)
+  ;(props.table as any).resetRowSelection()
   toast.promise(sleep(2000), {
-    loading: 'Inviting users...',
+    loading: '正在邀请用户...',
     success: () => {
-      return `${selectedRows.length} users invited`
+      return `已邀请 ${selectedUsers.length} 个用户`
     },
-    error: 'Error inviting users',
+    error: '邀请用户时出错',
   })
 }
 </script>
@@ -55,15 +59,15 @@ function handleBulkInvite() {
             size="icon"
             @click="handleBulkInvite()"
             class="size-8"
-            aria-label="Invite selected users"
-            title="Invite selected users"
+            aria-label="邀请选中的用户"
+            title="邀请选中的用户"
           >
             <Mail />
-            <span class="sr-only">Invite selected users</span>
+            <span class="sr-only">邀请选中的用户</span>
           </Button>
         </TooltipTrigger>
         <TooltipContent>
-          <p>Invite selected users</p>
+          <p>邀请选中的用户</p>
         </TooltipContent>
       </Tooltip>
 
@@ -74,15 +78,15 @@ function handleBulkInvite() {
             size="icon"
             @click="handleBulkStatusChange('active')"
             class="size-8"
-            aria-label="Activate selected users"
-            title="Activate selected users"
+            aria-label="激活选中的用户"
+            title="激活选中的用户"
           >
             <UserCheck />
-            <span class="sr-only">Activate selected users</span>
+            <span class="sr-only">激活选中的用户</span>
           </Button>
         </TooltipTrigger>
         <TooltipContent>
-          <p>Activate selected users</p>
+          <p>激活选中的用户</p>
         </TooltipContent>
       </Tooltip>
 
@@ -93,15 +97,15 @@ function handleBulkInvite() {
             size="icon"
             @click="handleBulkStatusChange('inactive')"
             class="size-8"
-            aria-label="Deactivate selected users"
-            title="Deactivate selected users"
+            aria-label="停用选中的用户"
+            title="停用选中的用户"
           >
             <UserX />
-            <span class="sr-only">Deactivate selected users</span>
+            <span class="sr-only">停用选中的用户</span>
           </Button>
         </TooltipTrigger>
         <TooltipContent>
-          <p>Deactivate selected users</p>
+          <p>停用选中的用户</p>
         </TooltipContent>
       </Tooltip>
 
@@ -112,15 +116,15 @@ function handleBulkInvite() {
             size="icon"
             @click="showDeleteConfirm = true"
             class="size-8"
-            aria-label="Delete selected users"
-            title="Delete selected users"
+            aria-label="删除选中的用户"
+            title="删除选中的用户"
           >
             <Trash2 />
-            <span class="sr-only">Delete selected users</span>
+            <span class="sr-only">删除选中的用户</span>
           </Button>
         </TooltipTrigger>
         <TooltipContent>
-          <p>Delete selected users</p>
+          <p>删除选中的用户</p>
         </TooltipContent>
       </Tooltip>
     </DataTableBulkActionsToolbar>

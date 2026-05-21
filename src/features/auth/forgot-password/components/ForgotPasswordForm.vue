@@ -2,7 +2,7 @@
   <form :class="cn('grid gap-2', $attrs.class)" @submit="onSubmit">
     <FormField v-slot="{ componentField }" name="email">
       <FormItem>
-        <FormLabel>Email</FormLabel>
+        <FormLabel>邮箱</FormLabel>
         <FormControl>
           <Input placeholder="name@example.com" v-bind="componentField" />
         </FormControl>
@@ -11,7 +11,7 @@
     </FormField>
 
     <Button type="submit" class="mt-2" :disabled="isLoading">
-      Continue
+      继续
       <ArrowRight v-if="!isLoading" class="ms-2" />
       <Loader2 v-else class="animate-spin" />
     </Button>
@@ -44,8 +44,8 @@ const formSchema = toTypedSchema(
   z.object({
     email: z
       .string()
-      .min(1, 'Please enter your email address.')
-      .email('Please enter a valid email address.'),
+      .min(1, '请输入您的邮箱地址。')
+      .email('请输入有效的邮箱地址。'),
   })
 )
 
@@ -60,14 +60,14 @@ const onSubmit = handleSubmit((values) => {
   toast.promise(
     new Promise((resolve) => setTimeout(resolve, 2000)),
     {
-      loading: 'Sending email...',
+      loading: '正在发送邮件...',
       success: () => {
         isLoading.value = false
         resetForm()
         router.push('/otp')
-        return `Email sent to ${values.email}`
+        return `邮件已发送至 ${values.email}`
       },
-      error: 'Error',
+      error: '错误',
     }
   )
 })

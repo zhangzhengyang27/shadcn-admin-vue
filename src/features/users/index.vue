@@ -26,9 +26,9 @@ useProvideUsers()
     <Main class="flex flex-1 flex-col gap-4 sm:gap-6">
       <div class="flex flex-wrap items-end justify-between gap-2">
         <div>
-          <h2 class="text-2xl font-bold tracking-tight">Users</h2>
+          <h2 class="text-2xl font-bold tracking-tight">用户列表</h2>
           <p class="text-muted-foreground">
-            Manage your users and their roles here.
+            在此管理您的用户及其角色。
           </p>
         </div>
         <UsersPrimaryButtons />

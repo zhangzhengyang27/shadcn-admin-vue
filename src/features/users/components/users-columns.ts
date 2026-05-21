@@ -18,7 +18,7 @@ export const usersColumns: ColumnDef<User>[] = [
           table.getIsAllPageRowsSelected() ||
           (table.getIsSomePageRowsSelected() && 'indeterminate'),
         onCheckedChange: (value: boolean) => table.toggleAllPageRowsSelected(!!value),
-        ariaLabel: 'Select all',
+        ariaLabel: '全选',
         class: 'translate-y-0.5',
       }),
     meta: {
@@ -28,7 +28,7 @@ export const usersColumns: ColumnDef<User>[] = [
       h(Checkbox, {
         checked: row.getIsSelected(),
         onCheckedChange: (value: boolean) => row.toggleSelected(!!value),
-        ariaLabel: 'Select row',
+        ariaLabel: '选择行',
         class: 'translate-y-0.5',
       }),
     enableSorting: false,
@@ -37,7 +37,7 @@ export const usersColumns: ColumnDef<User>[] = [
   {
     accessorKey: 'username',
     header: ({ column }) =>
-      h(DataTableColumnHeader, { column, title: 'Username' }),
+      h(DataTableColumnHeader, { column, title: '用户名' }),
     cell: ({ row }) => {
       const username = row.getValue('username') as string
       return h(LongText, { customClass: 'max-w-36 ps-3' }, username || '')
@@ -53,7 +53,7 @@ export const usersColumns: ColumnDef<User>[] = [
   {
     id: 'fullName',
     header: ({ column }) =>
-      h(DataTableColumnHeader, { column, title: 'Full Name' }),
+      h(DataTableColumnHeader, { column, title: '姓名' }),
     cell: ({ row }) => {
       const { firstName, lastName } = row.original as User
       const fullName = `${firstName || ''} ${lastName || ''}`.trim()
@@ -64,7 +64,7 @@ export const usersColumns: ColumnDef<User>[] = [
   {
     accessorKey: 'email',
     header: ({ column }) =>
-      h(DataTableColumnHeader, { column, title: 'Email' }),
+      h(DataTableColumnHeader, { column, title: '邮箱' }),
     cell: ({ row }) => {
       const email = row.getValue('email') as string
       return h('div', { class: 'w-fit ps-2 text-nowrap' }, email || '')
@@ -73,7 +73,7 @@ export const usersColumns: ColumnDef<User>[] = [
   {
     accessorKey: 'phoneNumber',
     header: ({ column }) =>
-      h(DataTableColumnHeader, { column, title: 'Phone Number' }),
+      h(DataTableColumnHeader, { column, title: '手机号码' }),
     cell: ({ row }) => {
       const phone = row.getValue('phoneNumber') as string
       return h('div', {}, phone || '')
@@ -83,7 +83,7 @@ export const usersColumns: ColumnDef<User>[] = [
   {
     accessorKey: 'status',
     header: ({ column }) =>
-      h(DataTableColumnHeader, { column, title: 'Status' }),
+      h(DataTableColumnHeader, { column, title: '状态' }),
     cell: ({ row }) => {
       const { status } = row.original as User
       const badgeColor = callTypes.get(status)
@@ -101,7 +101,7 @@ export const usersColumns: ColumnDef<User>[] = [
   {
     accessorKey: 'role',
     header: ({ column }) =>
-      h(DataTableColumnHeader, { column, title: 'Role' }),
+      h(DataTableColumnHeader, { column, title: '角色' }),
     cell: ({ row }) => {
       const { role } = row.original as User
       const userType = roles.find(({ value }) => value === role)

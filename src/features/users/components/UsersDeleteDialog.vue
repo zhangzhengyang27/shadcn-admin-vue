@@ -21,9 +21,8 @@ const emit = defineEmits<{
 const value = ref('')
 
 function handleDelete() {
-  // TODO: Need to get currentRow from props
   emit('update:open', false)
-  showSubmittedData({ username: value.value }, 'The following user has been deleted:')
+  showSubmittedData({ username: value.value }, '以下用户已被删除：')
 }
 </script>
 
@@ -40,7 +39,7 @@ function handleDelete() {
           class="me-1 inline-block stroke-destructive"
           :size="18"
         />
-        Delete User
+        删除用户
       </span>
     </template>
     <template #desc>
@@ -50,28 +49,28 @@ function handleDelete() {
         class="space-y-4"
       >
         <p class="mb-2">
-          Are you sure you want to delete <span class="font-bold">{{ currentRow.username }}</span>?
+          您确定要删除 <span class="font-bold">{{ currentRow.username }}</span>?
           <br />
-          This will permanently remove the user with role <span class="font-bold">{{ currentRow.role.toUpperCase() }}</span>. This action cannot be undone.
+          此操作将永久删除角色为 <span class="font-bold">{{ currentRow.role.toUpperCase() }}</span> 的用户，此操作无法撤销。
         </p>
 
         <Label class="my-2">
-          Username:
+          用户名：
           <Input
             v-model="value"
-            placeholder="Enter username to confirm deletion."
+            placeholder="输入用户名以确认删除。"
             autofocus
           />
         </Label>
 
         <Alert variant="destructive">
-          <AlertTitle>Warning!</AlertTitle>
+          <AlertTitle>警告！</AlertTitle>
           <AlertDescription>
-            Please proceed with caution. This action cannot be undone.
+            请谨慎操作，此操作不可撤销。
           </AlertDescription>
         </Alert>
       </form>
     </template>
-    <template #confirmText>Delete</template>
+    <template #confirmText>删除</template>
   </ConfirmDialog>
 </template>

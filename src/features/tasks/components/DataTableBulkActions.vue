@@ -18,53 +18,63 @@ import {
 } from '@/components/ui/tooltip'
 import DataTableBulkActionsToolbar from '@/components/data-table/DataTableBulkActions.vue'
 import { priorities, statuses } from '../data/data'
+import type { Task } from '../data/schema'
 import TasksMultiDeleteDialog from './TasksMultiDeleteDialog.vue'
 
 interface Props {
-  table: Table<any>
+  table: Table<Task>
 }
 
-defineProps<Props>()
+const props = defineProps<Props>()
 
 const showDeleteConfirm = ref(false)
 
 function handleBulkStatusChange(status: string) {
-  const selectedRows = []
+  const selectedRows = props.table.getFilteredSelectedRowModel().rows
+  const selectedTasks = selectedRows.map((row) => row.original as Task)
   toast.promise(sleep(2000), {
-    loading: '更新状态中...',
+    loading: '正在更新状态...',
     success: () => {
-      return `${selectedRows.length} 个任务状态已更新为"${status}"`
+      props.table.resetRowSelection()
+      return `已将 ${selectedTasks.length} 个任务的状态更新为"${status}"`
     },
     error: '更新状态失败',
   })
+  props.table.resetRowSelection()
 }
 
 function handleBulkPriorityChange(priority: string) {
-  const selectedRows = []
+  const selectedRows = props.table.getFilteredSelectedRowModel().rows
+  const selectedTasks = selectedRows.map((row) => row.original as Task)
   toast.promise(sleep(2000), {
-    loading: '更新优先级中...',
+    loading: '正在更新优先级...',
     success: () => {
-      return `${selectedRows.length} 个任务优先级已更新为"${priority}"`
+      props.table.resetRowSelection()
+      return `已将 ${selectedTasks.length} 个任务的优先级更新为"${priority}"`
     },
     error: '更新优先级失败',
   })
+  props.table.resetRowSelection()
 }
 
 function handleBulkExport() {
-  const selectedRows = []
+  const selectedRows = props.table.getFilteredSelectedRowModel().rows
+  const selectedTasks = selectedRows.map((row) => row.original as Task)
   toast.promise(sleep(2000), {
-    loading: '导出任务中...',
+    loading: '正在导出任务...',
     success: () => {
-      return `${selectedRows.length} 个任务已导出为 CSV`
+      props.table.resetRowSelection()
+      return `已导出 ${selectedTasks.length} 个任务到 CSV`
     },
     error: '导出失败',
   })
+  props.table.resetRowSelection()
 }
 </script>
 
 <template>
   <div>
-    <DataTableBulkActionsToolbar :table="table" entity-name="task">
+    <DataTableBulkActionsToolbar :table="table as any" entity-name="task">
       <DropdownMenu>
         <Tooltip>
           <TooltipTrigger as-child>
@@ -181,7 +191,7 @@ function handleBulkExport() {
     <TasksMultiDeleteDialog
       :open="showDeleteConfirm"
       @update:open="(val: boolean) => { showDeleteConfirm = val }"
-      :table="table"
+      :table="table as any"
     />
   </div>
 </template>

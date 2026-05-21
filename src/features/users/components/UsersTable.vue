@@ -100,22 +100,22 @@ const table = useVueTable({
   <div :class="cn('max-sm:has-[div[role=toolbar]]:mb-16', 'flex flex-1 flex-col gap-4')">
     <DataTableToolbar
       :table="table"
-      search-placeholder="Filter users..."
+      search-placeholder="筛选用户..."
       search-key="username"
       :filters="[
         {
           columnId: 'status',
-          title: 'Status',
+          title: '状态',
           options: [
-            { label: 'Active', value: 'active' },
-            { label: 'Inactive', value: 'inactive' },
-            { label: 'Invited', value: 'invited' },
-            { label: 'Suspended', value: 'suspended' },
+            { label: '活跃', value: 'active' },
+            { label: '非活跃', value: 'inactive' },
+            { label: '已邀请', value: 'invited' },
+            { label: '已暂停', value: 'suspended' },
           ],
         },
         {
           columnId: 'role',
-          title: 'Role',
+          title: '角色',
           options: roles.map((role) => ({ ...role })),
         },
       ]"
@@ -174,7 +174,7 @@ const table = useVueTable({
           <template v-else>
             <TableRow>
               <TableCell :col-span="columns.length" class="h-24 text-center">
-                No data available.
+                暂无数据。
               </TableCell>
             </TableRow>
           </template>

@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import { reactive } from 'vue'
+import { toTypedSchema } from '@vee-validate/zod'
+import { useForm } from 'vee-validate'
+import { z } from 'zod'
 import { showSubmittedData } from '@/lib/show-submitted-data'
 import { Button } from '@/components/ui/button'
 import {
@@ -30,14 +32,33 @@ const emit = defineEmits<{
   'update:open': [value: boolean]
 }>()
 
-const form = reactive({ file: undefined as FileList | undefined })
+const formSchema = z.object({
+  file: z
+    .instanceof(FileList)
+    .refine((files) => files.length > 0, {
+      message: 'Please upload a file.',
+    })
+    .refine(
+      (files) => ['text/csv'].includes(files?.[0]?.type),
+      '请上传CSV格式的文件。',
+    ),
+})
 
-function onSubmit() {
-  if (form.file && form.file[0]) {
+type ImportForm = z.infer<typeof formSchema>
+
+const form = useForm<ImportForm>({
+  validationSchema: toTypedSchema(formSchema),
+  initialValues: { file: undefined as FileList | undefined },
+})
+
+function onSubmit(values: ImportForm) {
+  const file = values.file
+
+  if (file && file[0]) {
     const fileDetails = {
-      name: form.file[0].name,
-      size: form.file[0].size,
-      type: form.file[0].type,
+      name: file[0].name,
+      size: file[0].size,
+      type: file[0].type,
     }
     showSubmittedData(fileDetails, '您已导入以下文件：')
   }
@@ -46,7 +67,7 @@ function onSubmit() {
 </script>
 
 <template>
-  <Dialog :open="open" @update:open="(val) => { emit('update:open', val) }">
+  <Dialog :open="open" @update:open="(val) => { emit('update:open', val); form.resetForm() }">
     <DialogContent class="gap-2 sm:max-w-sm">
       <DialogHeader class="text-start">
         <DialogTitle>导入任务</DialogTitle>
@@ -55,15 +76,15 @@ function onSubmit() {
         </DialogDescription>
       </DialogHeader>
       <Form>
-        <form id="task-import-form" @submit.prevent="onSubmit" class="space-y-4">
-          <FormField name="file">
+        <form id="task-import-form" @submit.prevent="form.handleSubmit(onSubmit)()" class="space-y-4">
+          <FormField v-slot="{ componentField: _cf }" name="file">
             <FormItem class="my-2">
               <FormLabel>文件</FormLabel>
               <FormControl>
                 <Input
                   type="file"
                   accept="text/csv"
-                  @change="(e: Event) => { form.file = (e.target as HTMLInputElement).files ?? undefined }"
+                  @change="(e: Event) => { form.setFieldValue('file', (e.target as HTMLInputElement).files ?? undefined as any) }"
                   class="h-8 py-0"
                 />
               </FormControl>

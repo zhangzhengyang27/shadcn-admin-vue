@@ -27,11 +27,11 @@ defineProps<Props>()
         class="ms-auto hidden h-8 lg:flex"
       >
         <MixerHorizontalIcon class="size-4" />
-        Views
+        视图
       </Button>
     </DropdownMenuTrigger>
     <DropdownMenuContent align="end" class="w-37.5">
-      <DropdownMenuLabel>Toggle Column Visibility</DropdownMenuLabel>
+      <DropdownMenuLabel>切换列显示</DropdownMenuLabel>
       <DropdownMenuSeparator />
       <DropdownMenuCheckboxItem
         v-for="column in table

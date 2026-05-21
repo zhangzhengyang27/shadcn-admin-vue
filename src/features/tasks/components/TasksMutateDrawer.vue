@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+import { toTypedSchema } from '@vee-validate/zod'
+import { useForm } from 'vee-validate'
 import { z } from 'zod'
-import { reactive, watch } from 'vue'
 import { showSubmittedData } from '@/lib/show-submitted-data'
 import { Button } from '@/components/ui/button'
 import {
@@ -13,6 +15,7 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
+import type { AcceptableValue } from 'reka-ui'
 import {
   Sheet,
   SheetClose,
@@ -26,10 +29,10 @@ import SelectDropdown from '@/components/select-dropdown.vue'
 import type { Task } from '../data/schema'
 
 const formSchema = z.object({
-  title: z.string().min(1, 'Please enter a title.'),
-  status: z.string().min(1, 'Status cannot be empty.'),
-  label: z.string().min(1, 'Label cannot be empty.'),
-  priority: z.string().min(1, 'Priority cannot be empty.'),
+  title: z.string().min(1, '请输入标题。'),
+  status: z.string().min(1, '状态不能为空。'),
+  label: z.string().min(1, '标签不能为空。'),
+  priority: z.string().min(1, '优先级不能为空。'),
 })
 type TaskForm = z.infer<typeof formSchema>
 
@@ -45,57 +48,38 @@ const emit = defineEmits<{
   'update:open': [value: boolean]
 }>()
 
-const isUpdate = !!props.currentRow
+const isUpdate = computed(() => !!props.currentRow)
 
-const form = reactive<TaskForm>(
-  props.currentRow ?? {
+const form = useForm<TaskForm>({
+  validationSchema: toTypedSchema(formSchema),
+  initialValues: props.currentRow ?? {
     title: '',
     status: '',
     label: '',
     priority: '',
-  }
-)
-
-watch(
-  () => props.currentRow,
-  (newRow) => {
-    if (newRow) {
-      Object.assign(form, {
-        title: newRow.title,
-        status: newRow.status,
-        label: newRow.label,
-        priority: newRow.priority,
-      })
-    }
   },
-  { immediate: true }
-)
+})
 
-function onSubmit() {
+function onSubmit(values: TaskForm) {
   emit('update:open', false)
-  Object.assign(form, {
-    title: '',
-    status: '',
-    label: '',
-    priority: '',
-  })
-  showSubmittedData(form)
+  form.resetForm()
+  showSubmittedData(values)
 }
 
 const statusOptions = [
-  { label: '进行中', value: 'in progress' },
-  { label: '待办', value: 'backlog' },
-  { label: '待处理', value: 'todo' },
-  { label: '已取消', value: 'canceled' },
-  { label: '已完成', value: 'done' },
+  { label: 'In Progress', value: 'in progress' },
+  { label: 'Backlog', value: 'backlog' },
+  { label: 'Todo', value: 'todo' },
+  { label: 'Canceled', value: 'canceled' },
+  { label: 'Done', value: 'done' },
 ]
 </script>
 
 <template>
-  <Sheet :open="open" @update:open="(v) => { emit('update:open', v) }">
+  <Sheet :open="open" @update:open="(v) => { emit('update:open', v); form.resetForm() }">
     <SheetContent class="flex flex-col">
       <SheetHeader class="text-start">
-        <SheetTitle>{{ isUpdate ? '编辑任务' : '新建任务' }}</SheetTitle>
+        <SheetTitle>{{ isUpdate ? '编辑' : '创建' }}任务</SheetTitle>
         <SheetDescription>
           {{ isUpdate ? '在此更新任务信息。' : '在此创建新任务。' }}
           完成后点击保存。
@@ -104,39 +88,39 @@ const statusOptions = [
       <Form>
         <form
           id="tasks-form"
-          @submit.prevent="onSubmit"
+          @submit.prevent="form.handleSubmit(onSubmit)()"
           class="flex-1 space-y-6 overflow-y-auto px-4"
         >
-          <FormField name="title">
+          <FormField v-slot="{ componentField }" name="title">
             <FormItem>
               <FormLabel>标题</FormLabel>
               <FormControl>
-                <Input v-model="form.title" placeholder="输入任务标题" />
+                <Input v-bind="componentField" placeholder="输入任务标题" />
               </FormControl>
               <FormMessage />
             </FormItem>
           </FormField>
 
-          <FormField name="status">
+          <FormField v-slot="{ componentField }" name="status">
             <FormItem>
-              <FormLabel>Status</FormLabel>
+              <FormLabel>状态</FormLabel>
               <SelectDropdown
-                :default-value="form.status"
-                @value-change="(val: string) => { form.status = val }"
-                placeholder="Select status"
+                :default-value="componentField.modelValue ?? ''"
+                @value-change="(val: string) => { form.setFieldValue('status', val) }"
+                placeholder="选择状态"
                 :items="statusOptions"
               />
               <FormMessage />
             </FormItem>
           </FormField>
 
-          <FormField name="label">
+          <FormField v-slot="{ componentField }" name="label">
             <FormItem class="relative">
               <FormLabel>标签</FormLabel>
               <FormControl>
                 <RadioGroup
-                  :model-value="form.label"
-                  @update:model-value="(val: any) => { form.label = val ?? '' }"
+                  :model-value="componentField.modelValue ?? ''"
+                  @update:model-value="(val: AcceptableValue) => { form.setFieldValue('label', String(val ?? '')) }"
                   class="flex flex-col space-y-1"
                 >
                   <FormItem class="flex items-center">
@@ -163,13 +147,13 @@ const statusOptions = [
             </FormItem>
           </FormField>
 
-          <FormField name="priority">
+          <FormField v-slot="{ componentField }" name="priority">
             <FormItem class="relative">
               <FormLabel>优先级</FormLabel>
               <FormControl>
                 <RadioGroup
-                  :model-value="form.priority"
-                  @update:model-value="(val: any) => { form.priority = val ?? '' }"
+                  :model-value="componentField.modelValue ?? ''"
+                  @update:model-value="(val: AcceptableValue) => { form.setFieldValue('priority', String(val ?? '')) }"
                   class="flex flex-col space-y-1"
                 >
                   <FormItem class="flex items-center">
@@ -199,7 +183,7 @@ const statusOptions = [
       </Form>
       <SheetFooter class="gap-2">
         <SheetClose as-child>
-          <Button variant="outline">取消</Button>
+          <Button variant="outline">关闭</Button>
         </SheetClose>
         <Button type="submit" form="tasks-form">
           保存更改

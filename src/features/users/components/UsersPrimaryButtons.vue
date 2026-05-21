@@ -9,11 +9,11 @@ const { setOpen } = useUsersContext()
 <template>
   <div class="flex gap-2">
     <Button variant="outline" class="space-x-1" @click="setOpen('invite')">
-      <span>Invite User</span>
+      <span>邀请用户</span>
       <MailPlus :size="18" />
     </Button>
     <Button class="space-x-1" @click="setOpen('add')">
-      <span>Add User</span>
+      <span>添加用户</span>
       <UserPlus :size="18" />
     </Button>
   </div>

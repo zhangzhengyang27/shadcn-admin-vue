@@ -27,8 +27,8 @@ import SelectDropdown from '@/components/select-dropdown.vue'
 import { roles } from '../data/data'
 
 const formSchema = z.object({
-  email: z.string().email('Invalid email format.').min(1, 'Please enter an email address to invite.'),
-  role: z.string().min(1, 'Role cannot be empty.'),
+  email: z.string().email('Please enter a valid email address.'),
+  role: z.string().min(1, '角色不能为空。'),
   desc: z.string().optional(),
 })
 
@@ -66,17 +66,17 @@ const roleOptions = roles.map(({ label, value }) => ({
     <DialogContent class="sm:max-w-md">
       <DialogHeader class="text-start">
         <DialogTitle class="flex items-center gap-2">
-          <MailPlus /> Invite User
+          <MailPlus /> 邀请用户
         </DialogTitle>
         <DialogDescription>
-          Invite new users to join your team by sending an email. Assign roles to define their access level.
+          通过发送邮件邀请新用户加入您的团队。分配角色以定义其访问权限级别。
         </DialogDescription>
       </DialogHeader>
       <Form>
         <form id="user-invite-form" @submit.prevent="onSubmit" class="space-y-4">
           <FormField name="email">
             <FormItem>
-              <FormLabel>Email</FormLabel>
+              <FormLabel>邮箱</FormLabel>
               <FormControl>
                 <Input v-model="form.email" type="email" placeholder="eg: john.doe@gmail.com" />
               </FormControl>
@@ -86,11 +86,11 @@ const roleOptions = roles.map(({ label, value }) => ({
 
           <FormField name="role">
             <FormItem>
-              <FormLabel>Role</FormLabel>
+              <FormLabel>角色</FormLabel>
               <SelectDropdown
                 :default-value="form.role"
                 @value-change="(val: string) => { form.role = val }"
-                placeholder="Select role"
+                placeholder="选择角色"
                 :items="roleOptions"
               />
               <FormMessage />
@@ -99,12 +99,12 @@ const roleOptions = roles.map(({ label, value }) => ({
 
           <FormField name="desc">
             <FormItem class="">
-              <FormLabel>Description (Optional)</FormLabel>
+              <FormLabel>描述（可选）</FormLabel>
               <FormControl>
                 <Textarea
                   v-model="form.desc"
                   class="resize-none"
-                  placeholder="Add a personal note to the invitation (optional)"
+                  placeholder="添加个人备注到邀请中（可选）"
                 />
               </FormControl>
               <FormMessage />
@@ -114,10 +114,10 @@ const roleOptions = roles.map(({ label, value }) => ({
       </Form>
       <DialogFooter class="gap-y-2">
         <DialogClose as-child>
-          <Button variant="outline">Cancel</Button>
+          <Button variant="outline">取消</Button>
         </DialogClose>
         <Button type="submit" form="user-invite-form">
-          Invite <Send />
+          邀请 <Send />
         </Button>
       </DialogFooter>
     </DialogContent>

@@ -43,7 +43,7 @@ const { setOpen, setCurrentRow } = useUsersContext()
           }
         "
       >
-        Edit
+        编辑
         <DropdownMenuShortcut>
           <UserPen :size="16" />
         </DropdownMenuShortcut>
@@ -58,7 +58,7 @@ const { setOpen, setCurrentRow } = useUsersContext()
           }
         "
       >
-        Delete
+        删除
         <DropdownMenuShortcut>
           <Trash2 :size="16" />
         </DropdownMenuShortcut>

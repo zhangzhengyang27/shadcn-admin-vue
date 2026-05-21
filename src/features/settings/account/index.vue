@@ -1,30 +1,30 @@
 <template>
-  <ContentSection title="Account" desc="Manage your account settings.">
+  <ContentSection title="账户" desc="管理您的账户设置。">
     <Form v-slot="{ handleSubmit }">
       <form @submit="handleSubmit(onSubmit)" class="space-y-8">
         <FormField name="name" v-slot="{ field }">
           <FormItem>
-            <FormLabel>Name</FormLabel>
+            <FormLabel>姓名</FormLabel>
             <FormControl>
-              <Input placeholder="Your name" v-bind="field" />
+              <Input placeholder="您的姓名" v-bind="field" />
             </FormControl>
-            <FormDescription>This will be displayed on your profile and in emails.</FormDescription>
+            <FormDescription>这将显示在您的个人资料和邮件中。</FormDescription>
             <FormMessage />
           </FormItem>
         </FormField>
 
         <FormField name="dob" v-slot="{ field }">
           <FormItem class="flex flex-col">
-            <FormLabel>Date of Birth</FormLabel>
+            <FormLabel>出生日期</FormLabel>
             <DatePicker :selected="field.value" @update:selected="field.onChange" />
-            <FormDescription>Your date of birth is used to calculate your age.</FormDescription>
+            <FormDescription>您的出生日期用于计算年龄。</FormDescription>
             <FormMessage />
           </FormItem>
         </FormField>
 
         <FormField name="language" v-slot="{ field }">
           <FormItem class="flex flex-col">
-            <FormLabel>Language</FormLabel>
+            <FormLabel>语言</FormLabel>
             <Popover>
               <PopoverTrigger as-child>
                 <FormControl>
@@ -39,16 +39,16 @@
                     {{
                       field.value
                         ? languages.find((l) => l.value === field.value)?.label
-                        : 'Select language'
+                        : '选择语言'
                     }}
-                    <CaretSortIcon class="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                    <ChevronDownIcon class="ml-2 h-4 w-4 shrink-0 opacity-50" />
                   </Button>
                 </FormControl>
               </PopoverTrigger>
               <PopoverContent class="w-[200px] p-0">
                 <Command>
-                  <CommandInput placeholder="Search language..." />
-                  <CommandEmpty>No language found.</CommandEmpty>
+                  <CommandInput placeholder="搜索语言..." />
+                  <CommandEmpty>未找到语言。</CommandEmpty>
                   <CommandGroup>
                     <CommandList>
                       <CommandItem
@@ -70,12 +70,12 @@
                 </Command>
               </PopoverContent>
             </Popover>
-            <FormDescription>This is the language that will be used in the dashboard.</FormDescription>
+            <FormDescription>这是将在仪表盘中使用的语言。</FormDescription>
             <FormMessage />
           </FormItem>
         </FormField>
 
-        <Button type="submit">Update account</Button>
+        <Button type="submit">更新账户</Button>
       </form>
     </Form>
   </ContentSection>
@@ -84,7 +84,7 @@
 <script setup lang="ts">
 import { z } from 'zod'
 import { toTypedSchema } from '@vee-validate/zod'
-import { CaretSortIcon, CheckIcon } from '@radix-icons/vue'
+import { ChevronDownIcon, CheckIcon } from 'lucide-vue-next'
 import ContentSection from '../components/ContentSection.vue'
 import { Button } from '@/components/ui/button'
 import {
@@ -128,15 +128,15 @@ const accountFormSchema = toTypedSchema(
   z.object({
     name: z
       .string()
-      .min(1, 'Please enter your name.')
-      .min(2, 'Name must be at least 2 characters.')
-      .max(30, 'Name cannot exceed 30 characters.'),
+      .min(1, '请输入您的姓名。')
+      .min(2, '姓名至少需要2个字符。')
+      .max(30, '姓名不能超过30个字符。'),
     dob: z.date(),
-    language: z.string({ message: 'Please select a language.' }),
+    language: z.string({ message: '请选择一种语言。' }),
   })
 )
 
-void accountFormSchema // used by vee-validate Form component via :validation-schema
+void accountFormSchema
 
 const onSubmit = (values: any) => {
   console.log('Submitted values:', values)

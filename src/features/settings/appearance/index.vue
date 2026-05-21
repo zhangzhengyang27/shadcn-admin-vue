@@ -1,5 +1,5 @@
 <template>
-  <ContentSection title="Appearance" desc="Customize the appearance of the application.">
+  <ContentSection title="外观" desc="自定义应用的外观。">
     <Form
       v-slot="{ handleSubmit }"
       :validation-schema="appearanceFormSchema"
@@ -11,7 +11,7 @@
       <form @submit="handleSubmit(onSubmit)" class="space-y-8">
         <FormField name="font" v-slot="{ field }">
           <FormItem>
-            <FormLabel>Font</FormLabel>
+            <FormLabel>字体</FormLabel>
             <div class="relative w-max">
               <FormControl>
                 <select
@@ -29,17 +29,15 @@
               </FormControl>
               <ChevronDownIcon class="absolute right-3 top-2.5 h-4 w-4 opacity-50" />
             </div>
-            <FormDescription class="font-manrope">
-              Select the font you want to use in the dashboard.
-            </FormDescription>
+            <FormDescription class="font-manrope">设置您想在仪表盘中使用的字体。</FormDescription>
             <FormMessage />
           </FormItem>
         </FormField>
 
         <FormField name="theme" v-slot="{ field }">
           <FormItem>
-            <FormLabel>Theme</FormLabel>
-            <FormDescription>Select the theme for the dashboard.</FormDescription>
+            <FormLabel>主题</FormLabel>
+            <FormDescription>选择仪表盘主题。</FormDescription>
             <FormMessage />
             <RadioGroup
               :model-value="field.value"
@@ -53,9 +51,7 @@
                   <FormControl>
                     <RadioGroupItem value="light" class="sr-only" />
                   </FormControl>
-                  <div
-                    class="items-center rounded-md border-2 border-muted p-1 hover:border-accent"
-                  >
+                  <div class="items-center rounded-md border-2 border-muted p-1 hover:border-accent">
                     <div class="space-y-2 rounded-sm bg-[#ecedef] p-2">
                       <div class="space-y-2 rounded-md bg-white p-2 shadow-xs">
                         <div class="h-2 w-20 rounded-lg bg-[#ecedef]" />
@@ -71,7 +67,7 @@
                       </div>
                     </div>
                   </div>
-                  <span class="block w-full p-2 text-center font-normal">Light</span>
+                  <span class="block w-full p-2 text-center font-normal">浅色</span>
                 </FormLabel>
               </FormItem>
 
@@ -82,9 +78,7 @@
                   <FormControl>
                     <RadioGroupItem value="dark" class="sr-only" />
                   </FormControl>
-                  <div
-                    class="items-center rounded-md border-2 border-muted bg-popover p-1 hover:bg-accent hover:text-accent-foreground"
-                  >
+                  <div class="items-center rounded-md border-2 border-muted bg-popover p-1 hover:bg-accent hover:text-accent-foreground">
                     <div class="space-y-2 rounded-sm bg-slate-950 p-2">
                       <div class="space-y-2 rounded-md bg-slate-800 p-2 shadow-xs">
                         <div class="h-2 w-20 rounded-lg bg-slate-400" />
@@ -100,14 +94,14 @@
                       </div>
                     </div>
                   </div>
-                  <span class="block w-full p-2 text-center font-normal">Dark</span>
+                  <span class="block w-full p-2 text-center font-normal">深色</span>
                 </FormLabel>
               </FormItem>
             </RadioGroup>
           </FormItem>
         </FormField>
 
-        <Button type="submit">Update preferences</Button>
+        <Button type="submit">更新偏好</Button>
       </form>
     </Form>
   </ContentSection>
@@ -116,7 +110,7 @@
 <script setup lang="ts">
 import { z } from 'zod'
 import { toTypedSchema } from '@vee-validate/zod'
-import { ChevronDownIcon } from '@radix-icons/vue'
+import { ChevronDownIcon } from 'lucide-vue-next'
 import { buttonVariants } from '@/components/ui/button'
 import { useFont } from '@/composables/useFont'
 import { useTheme } from '@/composables/useTheme'

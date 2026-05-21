@@ -44,7 +44,7 @@ const pageNumbers = computed(() => getPageNumbers(currentPage.value, totalPages.
   >
     <div class="flex w-full items-center justify-between">
       <div class="flex w-25 items-center justify-center text-sm font-medium @2xl/content:hidden">
-        Page {{ currentPage }} of {{ totalPages }}
+        第 {{ currentPage }} 页，共 {{ totalPages }} 页
       </div>
       <div class="flex items-center gap-2 @max-2xl/content:flex-row-reverse">
         <Select
@@ -60,13 +60,13 @@ const pageNumbers = computed(() => getPageNumbers(currentPage.value, totalPages.
             </SelectItem>
           </SelectContent>
         </Select>
-        <p class="hidden text-sm font-medium sm:block">Rows per page</p>
+        <p class="hidden text-sm font-medium sm:block">每页行数</p>
       </div>
     </div>
 
     <div class="flex items-center sm:space-x-6 lg:space-x-8">
       <div class="flex w-25 items-center justify-center text-sm font-medium @max-3xl/content:hidden">
-        Page {{ currentPage }} of {{ totalPages }}
+        第 {{ currentPage }} 页，共 {{ totalPages }} 页
       </div>
       <div class="flex items-center space-x-2">
         <Button
@@ -75,7 +75,7 @@ const pageNumbers = computed(() => getPageNumbers(currentPage.value, totalPages.
           @click="table.setPageIndex(0)"
           :disabled="!table.getCanPreviousPage()"
         >
-          <span class="sr-only">Go to first page</span>
+          <span class="sr-only">跳转到首页</span>
           <DoubleArrowLeftIcon class="h-4 w-4" />
         </Button>
 
@@ -85,7 +85,7 @@ const pageNumbers = computed(() => getPageNumbers(currentPage.value, totalPages.
           @click="table.previousPage()"
           :disabled="!table.getCanPreviousPage()"
         >
-          <span class="sr-only">Previous page</span>
+          <span class="sr-only">上一页</span>
           <ChevronLeftIcon class="h-4 w-4" />
         </Button>
 
@@ -100,7 +100,7 @@ const pageNumbers = computed(() => getPageNumbers(currentPage.value, totalPages.
             class="h-8 min-w-8 px-2"
             @click="table.setPageIndex((pageNumber as number) - 1)"
           >
-            <span class="sr-only">Go to page {{ pageNumber }}</span>
+            <span class="sr-only">跳转到第 {{ pageNumber }} 页</span>
             {{ pageNumber }}
           </Button>
         </template>
@@ -111,7 +111,7 @@ const pageNumbers = computed(() => getPageNumbers(currentPage.value, totalPages.
           @click="table.nextPage()"
           :disabled="!table.getCanNextPage()"
         >
-          <span class="sr-only">Next page</span>
+          <span class="sr-only">下一页</span>
           <ChevronRightIcon class="h-4 w-4" />
         </Button>
 
@@ -121,7 +121,7 @@ const pageNumbers = computed(() => getPageNumbers(currentPage.value, totalPages.
           @click="table.setPageIndex(table.getPageCount() - 1)"
           :disabled="!table.getCanNextPage()"
         >
-          <span class="sr-only">Go to last page</span>
+          <span class="sr-only">跳转到末页</span>
           <DoubleArrowRightIcon class="h-4 w-4" />
         </Button>
       </div>

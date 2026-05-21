@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { DotsHorizontalIcon } from '@radix-icons/vue'
+import { MoreHorizontal } from 'lucide-vue-next'
 import { type Row } from '@tanstack/vue-table'
 import { Trash2 } from 'lucide-vue-next'
 import { Button } from '@/components/ui/button'
@@ -37,7 +37,7 @@ const { setOpen, setCurrentRow } = useTasksContext()
         variant="ghost"
         class="flex h-8 w-8 p-0 data-[state=open]:bg-muted"
       >
-        <DotsHorizontalIcon class="h-4 w-4" />
+        <MoreHorizontal class="h-4 w-4" />
         <span class="sr-only">打开菜单</span>
       </Button>
     </DropdownMenuTrigger>

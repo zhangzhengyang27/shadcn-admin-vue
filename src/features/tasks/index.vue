@@ -26,9 +26,9 @@ useProvideTasks()
     <Main class="flex flex-1 flex-col gap-4 sm:gap-6">
       <div class="flex flex-wrap items-end justify-between gap-2">
         <div>
-          <h2 class="text-2xl font-bold tracking-tight">任务管理</h2>
+          <h2 class="text-2xl font-bold tracking-tight">任务</h2>
           <p class="text-muted-foreground">
-            在此管理您的任务
+            这是您本月的任务列表！
           </p>
         </div>
         <TasksPrimaryButtons />

@@ -2,7 +2,7 @@
   <form :class="cn('grid gap-2', $attrs.class)" @submit="onSubmit">
     <FormField v-slot="{ componentField }" name="otp">
       <FormItem>
-        <FormLabel class="sr-only">One-Time Password</FormLabel>
+        <FormLabel class="sr-only">一次性验证码</FormLabel>
         <FormControl>
           <InputOTP
             v-bind="componentField"
@@ -30,7 +30,7 @@
     </FormField>
 
     <Button type="submit" class="mt-2" :disabled="otpValue.length < 6 || isLoading">
-      Verify
+      验证
     </Button>
   </form>
 </template>
@@ -62,7 +62,7 @@ const isLoading = ref(false)
 
 const formSchema = toTypedSchema(
   z.object({
-    otp: z.string().min(6, 'Please enter the 6-digit code.').max(6, 'Please enter the 6-digit code.'),
+    otp: z.string().min(6, '请输入6位验证码。').max(6, '请输入6位验证码。'),
   })
 )
 

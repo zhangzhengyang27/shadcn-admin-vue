@@ -32,7 +32,7 @@ export const tasksColumns: ColumnDef<Task>[] = [
   {
     accessorKey: 'id',
     header: ({ column }) =>
-      h(DataTableColumnHeader, { column, title: '任务ID' }),
+      h(DataTableColumnHeader, { column, title: '任务编号' }),
     cell: ({ row }) => {
       const id = row.getValue('id')
       return h('div', { class: 'w-20' }, id != null ? String(id) : '')

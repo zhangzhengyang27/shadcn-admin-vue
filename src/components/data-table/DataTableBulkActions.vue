@@ -147,15 +147,15 @@ function handleKeyDown(event: KeyboardEvent) {
               size="icon"
               @click="handleClearSelection"
               class="size-6 rounded-full"
-              aria-label="Clear selection"
-              title="Clear selection (Escape)"
+              aria-label="清除选择"
+              title="清除选择 (Escape)"
             >
               <X />
-              <span class="sr-only">Clear selection</span>
+              <span class="sr-only">清除选择</span>
             </Button>
           </TooltipTrigger>
           <TooltipContent>
-            <p>Clear selection (Escape)</p>
+            <p>清除选择 (Escape)</p>
           </TooltipContent>
         </Tooltip>
 
@@ -172,7 +172,7 @@ function handleKeyDown(event: KeyboardEvent) {
             {{ entityName }}
             {{ selectedCount > 1 ? 's' : '' }}
           </span>
-          selected
+          已选中
         </div>
 
         <Separator class="h-5" orientation="vertical" aria-hidden="true" />

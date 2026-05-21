@@ -2,7 +2,7 @@
   <form :class="cn('grid gap-3', $attrs.class)" @submit="onSubmit">
     <FormField v-slot="{ componentField }" name="email">
       <FormItem>
-        <FormLabel>Email</FormLabel>
+        <FormLabel>邮箱</FormLabel>
         <FormControl>
           <Input placeholder="name@example.com" v-bind="componentField" />
         </FormControl>
@@ -12,7 +12,7 @@
 
     <FormField v-slot="{ componentField }" name="password" class="relative">
       <FormItem>
-        <FormLabel>Password</FormLabel>
+        <FormLabel>密码</FormLabel>
         <FormControl>
           <PasswordInput placeholder="********" v-bind="componentField" />
         </FormControl>
@@ -21,7 +21,7 @@
           to="/forgot-password"
           class="absolute inset-e-0 -top-0.5 text-sm font-medium text-muted-foreground hover:opacity-75"
         >
-          Forgot Password?
+          忘记密码？
         </router-link>
       </FormItem>
     </FormField>
@@ -29,7 +29,7 @@
     <Button type="submit" class="mt-2" :disabled="isLoading">
       <Loader2 v-if="isLoading" class="animate-spin" />
       <LogIn v-else />
-      Sign In
+      登录
     </Button>
 
     <div class="relative my-2">
@@ -38,7 +38,7 @@
       </div>
       <div class="relative flex justify-center text-xs uppercase">
         <span class="bg-background px-2 text-muted-foreground">
-          Or continue with
+          或使用以下方式登录
         </span>
       </div>
     </div>
@@ -88,12 +88,12 @@ const formSchema = toTypedSchema(
   z.object({
     email: z
       .string()
-      .min(1, 'Please enter your email address.')
-      .email('Please enter a valid email address.'),
+      .min(1, '请输入您的邮箱地址。')
+      .email('请输入有效的邮箱地址。'),
     password: z
       .string()
-      .min(1, 'Please enter your password.')
-      .min(7, 'Password must be at least 7 characters.'),
+      .min(1, '请输入您的密码。')
+      .min(7, '密码至少需要7个字符。'),
   })
 )
 
@@ -111,7 +111,7 @@ const onSubmit = handleSubmit((values) => {
   toast.promise(
     new Promise((resolve) => setTimeout(resolve, 2000)),
     {
-      loading: 'Signing in...',
+      loading: '正在登录...',
       success: () => {
         isLoading.value = false
 
@@ -128,9 +128,9 @@ const onSubmit = handleSubmit((values) => {
         const targetPath = props.redirectTo || '/'
         router.replace(targetPath)
 
-        return `Welcome back, ${values.email}!`
+        return `欢迎回来，${values.email}！`
       },
-      error: 'Error',
+      error: '错误',
     }
   )
 })

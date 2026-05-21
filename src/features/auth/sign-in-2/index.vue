@@ -11,50 +11,57 @@
       </div>
       <div class="mx-auto flex w-full max-w-sm flex-col justify-center space-y-2">
         <div class="flex flex-col space-y-2 text-start">
-          <h2 class="text-lg font-semibold tracking-tight">Sign In</h2>
+          <h2 class="text-lg font-semibold tracking-tight">登录</h2>
           <p class="text-sm text-muted-foreground">
-            Enter your email and password below to sign in
+            在下方输入您的邮箱和密码以登录
             <br class="max-sm:hidden" />
-            to your account. Don't have an account?
+            您的账户。还没有账户？
             <router-link
               to="/sign-up"
               class="text-nowrap underline underline-offset-4 hover:text-primary"
             >
-              Sign up
+              注册
             </router-link>
           </p>
         </div>
         <UserAuthForm />
         <p class="px-8 text-center text-sm text-muted-foreground">
-          By clicking sign in, you agree to our
+          点击登录即表示您同意我们的
           <a
             href="/terms"
             class="underline underline-offset-4 hover:text-primary"
           >
-            Terms of Service
+            服务条款
           </a>
-          and
+          和
           <a
             href="/privacy"
             class="underline underline-offset-4 hover:text-primary"
           >
-            Privacy Policy
+            隐私政策
           </a>
-          .
+          。
         </p>
       </div>
     </div>
 
     <div
-      class="relative h-full overflow-hidden bg-muted max-lg:hidden flex items-center justify-center"
+      class="relative h-full overflow-hidden bg-muted max-lg:hidden [&>img]:absolute [&>img]:top-[15%] [&>img]:left-20 [&>img]:h-full [&>img]:w-full [&>img]:object-cover [&>img]:object-top-left [&>img]:select-none"
     >
-      <div class="absolute inset-0 bg-linear-to-br from-primary/5 to-primary/10" />
-      <div class="relative z-10 text-center space-y-4 px-8">
-        <h2 class="text-2xl font-bold tracking-tight">Manage your business</h2>
-        <p class="text-muted-foreground">
-          A modern admin panel to help you efficiently manage your team and projects.
-        </p>
-      </div>
+      <img
+        :src="dashboardLight"
+        class="dark:hidden"
+        width="1024"
+        height="1151"
+        alt="Shadcn-Admin"
+      />
+      <img
+        :src="dashboardDark"
+        class="hidden dark:block"
+        width="1024"
+        height="1138"
+        alt="Shadcn-Admin"
+      />
     </div>
   </div>
 </template>
@@ -62,4 +69,6 @@
 <script setup lang="ts">
 import Logo from '@/assets/logo.vue'
 import UserAuthForm from '../sign-in/components/UserAuthForm.vue'
+import dashboardLight from './assets/dashboard-light.png'
+import dashboardDark from './assets/dashboard-dark.png'
 </script>

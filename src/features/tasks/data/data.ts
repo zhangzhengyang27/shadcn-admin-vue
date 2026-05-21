@@ -32,7 +32,7 @@ export const statuses = [
     icon: HelpCircle,
   },
   {
-    label: '待处理',
+    label: '待办',
     value: 'todo' as const,
     icon: Circle,
   },

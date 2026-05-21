@@ -45,27 +45,25 @@
           :key="app.name"
           class="hover:border-primary/50 hover:shadow-md transition-all"
         >
-          <CardContent class="pt-6">
-            <div class="flex items-center gap-4">
-              <!-- Icon (Square rounded) -->
-              <div class="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                <component :is="app.logo" class="h-6 w-6 text-primary" />
-              </div>
-              <!-- Name & Description -->
-              <div class="flex-1 min-w-0">
-                <h3 class="font-semibold">{{ app.name }}</h3>
-                <p class="text-sm text-muted-foreground truncate">{{ app.desc }}</p>
-              </div>
-              <!-- Button -->
-              <Button
-                :variant="app.connected ? 'default' : 'outline'"
-                class="shrink-0"
-                @click="handleConnect(app.name)"
-              >
-                <Loader2 v-if="connectingApp === app.name" class="mr-2 h-4 w-4 animate-spin" />
-                {{ app.connected ? 'Connected' : 'Connect' }}
-              </Button>
+          <CardHeader class="flex flex-row items-center justify-between space-y-0 pb-3">
+            <div class="flex size-11 items-center justify-center rounded-lg bg-muted">
+              <component :is="app.logo" class="size-5" />
             </div>
+            <Button
+              variant="outline"
+              size="sm"
+              :class="app.connected && 'border-primary text-primary'"
+              @click="handleConnect(app.name)"
+            >
+              <Loader2 v-if="connectingApp === app.name" class="mr-2 h-4 w-4 animate-spin" />
+              {{ app.connected ? 'Connected' : 'Connect' }}
+            </Button>
+          </CardHeader>
+          <CardContent class="pt-0 pb-5">
+            <h3 class="font-semibold text-sm">{{ app.name }}</h3>
+            <p class="text-sm text-muted-foreground mt-1.5 line-clamp-2 leading-relaxed">
+              {{ app.desc }}
+            </p>
           </CardContent>
         </Card>
       </div>
@@ -89,7 +87,7 @@
 import { ref, computed } from 'vue'
 import { Loader2, Package, Search as SearchIcon } from 'lucide-vue-next'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent } from '@/components/ui/card'
+import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import {
   Select,

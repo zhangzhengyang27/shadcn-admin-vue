@@ -50,18 +50,18 @@ const props = withDefaults(defineProps<Props>(), {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="start">
         <DropdownMenuItem @click="column.toggleSorting(false)">
-          <ArrowDownIcon class="size-3.5 text-muted-foreground/70" />
-          Asc
+          <ArrowUpIcon class="size-3.5 text-muted-foreground/70" />
+          升序
         </DropdownMenuItem>
         <DropdownMenuItem @click="column.toggleSorting(true)">
-          <ArrowUpIcon class="size-3.5 text-muted-foreground/70" />
-          Desc
+          <ArrowDownIcon class="size-3.5 text-muted-foreground/70" />
+          降序
         </DropdownMenuItem>
         <template v-if="column.getCanHide()">
           <DropdownMenuSeparator />
           <DropdownMenuItem @click="column.toggleVisibility(false)">
             <EyeNoneIcon class="size-3.5 text-muted-foreground/70" />
-            Hide
+            隐藏
           </DropdownMenuItem>
         </template>
       </DropdownMenuContent>

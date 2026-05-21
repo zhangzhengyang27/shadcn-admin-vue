@@ -1,5 +1,5 @@
 <template>
-  <ContentSection title="Notifications" desc="Configure how you receive notifications.">
+  <ContentSection title="通知" desc="配置您接收通知的方式。">
     <Form
       v-slot="{ handleSubmit }"
       :validation-schema="notificationsFormSchema"
@@ -14,7 +14,7 @@
       <form @submit="handleSubmit(onSubmit)" class="space-y-8">
         <FormField name="type" v-slot="{ field }">
           <FormItem class="relative space-y-3">
-            <FormLabel>Notify me about...</FormLabel>
+            <FormLabel>通知我关于...</FormLabel>
             <FormControl>
               <RadioGroup
                 :model-value="field.value"
@@ -25,19 +25,19 @@
                   <FormControl>
                     <RadioGroupItem value="all" />
                   </FormControl>
-                  <FormLabel class="font-normal">All new messages</FormLabel>
+                  <FormLabel class="font-normal">所有新消息</FormLabel>
                 </FormItem>
                 <FormItem class="flex items-center">
                   <FormControl>
                     <RadioGroupItem value="mentions" />
                   </FormControl>
-                  <FormLabel class="font-normal">Direct messages and mentions</FormLabel>
+                  <FormLabel class="font-normal">私信和提及</FormLabel>
                 </FormItem>
                 <FormItem class="flex items-center">
                   <FormControl>
                     <RadioGroupItem value="none" />
                   </FormControl>
-                  <FormLabel class="font-normal">Nothing</FormLabel>
+                  <FormLabel class="font-normal">不接收任何通知</FormLabel>
                 </FormItem>
               </RadioGroup>
             </FormControl>
@@ -46,13 +46,13 @@
         </FormField>
 
         <div class="relative">
-          <h3 class="mb-4 text-lg font-medium">Email notifications</h3>
+          <h3 class="mb-4 text-lg font-medium">邮件通知</h3>
           <div class="space-y-4">
             <FormField name="communication_emails" v-slot="{ field }">
               <FormItem class="flex flex-row items-center justify-between rounded-lg border p-4">
                 <div class="space-y-0.5">
-                  <FormLabel class="text-base">Communication emails</FormLabel>
-                  <FormDescription>Receive emails about your account activity.</FormDescription>
+                  <FormLabel class="text-base">通信邮件</FormLabel>
+                  <FormDescription>接收有关账户活动的邮件。</FormDescription>
                 </div>
                 <FormControl>
                   <Switch :checked="field.value" @update:checked="field.onChange" />
@@ -63,8 +63,8 @@
             <FormField name="marketing_emails" v-slot="{ field }">
               <FormItem class="flex flex-row items-center justify-between rounded-lg border p-4">
                 <div class="space-y-0.5">
-                  <FormLabel class="text-base">Marketing emails</FormLabel>
-                  <FormDescription>Receive emails about new products, features, and more.</FormDescription>
+                  <FormLabel class="text-base">营销邮件</FormLabel>
+                  <FormDescription>接收有关新产品、功能等的邮件。</FormDescription>
                 </div>
                 <FormControl>
                   <Switch :checked="field.value" @update:checked="field.onChange" />
@@ -75,8 +75,8 @@
             <FormField name="social_emails" v-slot="{ field }">
               <FormItem class="flex flex-row items-center justify-between rounded-lg border p-4">
                 <div class="space-y-0.5">
-                  <FormLabel class="text-base">Social emails</FormLabel>
-                  <FormDescription>Receive emails about friend requests and follows.</FormDescription>
+                  <FormLabel class="text-base">社交邮件</FormLabel>
+                  <FormDescription>接收有关好友请求和关注的邮件。</FormDescription>
                 </div>
                 <FormControl>
                   <Switch :checked="field.value" @update:checked="field.onChange" />
@@ -87,8 +87,8 @@
             <FormField name="security_emails" v-slot="{ field }">
               <FormItem class="flex flex-row items-center justify-between rounded-lg border p-4">
                 <div class="space-y-0.5">
-                  <FormLabel class="text-base">Security emails</FormLabel>
-                  <FormDescription>Receive emails about your account activity and security.</FormDescription>
+                  <FormLabel class="text-base">安全邮件</FormLabel>
+                  <FormDescription>接收有关账户活动和安全的邮件。</FormDescription>
                 </div>
                 <FormControl>
                   <Switch
@@ -109,22 +109,22 @@
               <Checkbox :checked="field.value" @update:checked="field.onChange" />
             </FormControl>
             <div class="space-y-1 leading-none">
-              <FormLabel>Use different settings for my mobile devices</FormLabel>
+              <FormLabel>为移动设备使用不同设置</FormLabel>
               <FormDescription>
-                You can manage mobile notifications from the
+                您可以在
                 <RouterLink
                   to="/settings"
                   class="underline decoration-dashed underline-offset-4 hover:decoration-solid"
                 >
-                  Mobile Settings
+                  移动设置
                 </RouterLink>
-                page.
+                页面管理移动通知。
               </FormDescription>
             </div>
           </FormItem>
         </FormField>
 
-        <Button type="submit">Update notifications</Button>
+        <Button type="submit">更新通知</Button>
       </form>
     </Form>
   </ContentSection>

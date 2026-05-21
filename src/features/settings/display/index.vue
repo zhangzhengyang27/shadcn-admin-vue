@@ -1,5 +1,5 @@
 <template>
-  <ContentSection title="Display" desc="Adjust your display settings to fit your workflow.">
+  <ContentSection title="显示" desc="调整显示设置以适应您的工作流程。">
     <Form
       v-slot="{ handleSubmit }"
       :validation-schema="displayFormSchema"
@@ -9,8 +9,8 @@
         <FormField name="items">
           <FormItem>
             <div class="mb-4">
-              <FormLabel class="text-base">Sidebar</FormLabel>
-              <FormDescription>Select which items appear in the sidebar.</FormDescription>
+              <FormLabel class="text-base">侧边栏</FormLabel>
+              <FormDescription>选择在侧边栏中显示的项目。</FormDescription>
             </div>
 
             <FormField
@@ -38,7 +38,7 @@
           </FormItem>
         </FormField>
 
-        <Button type="submit">Update display</Button>
+        <Button type="submit">更新显示</Button>
       </form>
     </Form>
   </ContentSection>
@@ -61,18 +61,18 @@ import {
 } from '@/components/ui/form'
 
 const items = [
-  { id: 'recents', label: 'Recents' },
-  { id: 'home', label: 'Home' },
-  { id: 'applications', label: 'Applications' },
-  { id: 'desktop', label: 'Desktop' },
-  { id: 'downloads', label: 'Downloads' },
-  { id: 'documents', label: 'Documents' },
+  { id: 'recents', label: '最近' },
+  { id: 'home', label: '主页' },
+  { id: 'applications', label: '应用' },
+  { id: 'desktop', label: '桌面' },
+  { id: 'downloads', label: '下载' },
+  { id: 'documents', label: '文档' },
 ] as const
 
 const displayFormSchema = toTypedSchema(
   z.object({
     items: z.array(z.string()).refine((value) => value.some((item) => item), {
-      message: 'You must select at least one item.',
+      message: '您必须至少选择一个项目。',
     }),
   })
 )

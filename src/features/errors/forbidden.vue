@@ -2,14 +2,14 @@
   <div class="h-svh">
     <div class="m-auto flex h-full w-full flex-col items-center justify-center gap-2">
       <h1 class="text-[7rem] leading-tight font-bold">403</h1>
-      <span class="font-medium">Access Forbidden</span>
+      <span class="font-medium">禁止访问</span>
       <p class="text-center text-muted-foreground">
-        You don't have permission to<br />
-        access this resource.
+        您没有权限<br />
+        访问此资源。
       </p>
       <div class="mt-6 flex gap-4">
-        <Button variant="outline" @click="goBack">Go Back</Button>
-        <Button @click="goHome">Back to Home</Button>
+        <Button variant="outline" @click="goBack">返回</Button>
+        <Button @click="goHome">返回首页</Button>
       </div>
     </div>
   </div>
@@ -17,7 +17,7 @@
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
-import { Button } from '@/components/ui/button'
+import Button from '@/components/ui/button/Button.vue'
 
 const router = useRouter()
 

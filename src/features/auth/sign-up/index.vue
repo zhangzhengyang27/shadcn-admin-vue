@@ -2,16 +2,16 @@
   <AuthLayout>
     <Card class="max-w-sm gap-4">
       <CardHeader>
-        <CardTitle class="text-lg tracking-tight">Sign Up</CardTitle>
+        <CardTitle class="text-lg tracking-tight">注册</CardTitle>
         <CardDescription>
-          Create an account to get started with our services.
+          创建账户以开始使用我们的服务。
           <br />
-          Already have an account?
+          已有账户？
           <router-link
             to="/sign-in"
             class="underline underline-offset-4 hover:text-primary"
           >
-            Sign In
+            登录
           </router-link>
         </CardDescription>
       </CardHeader>
@@ -20,21 +20,21 @@
       </CardContent>
       <CardFooter>
         <p class="px-8 text-center text-sm text-muted-foreground">
-          By creating an account, you agree to our
+          创建账户即表示您同意我们的
           <a
             href="/terms"
             class="underline underline-offset-4 hover:text-primary"
           >
-            Terms of Service
+            服务条款
           </a>
-          and
+          和
           <a
             href="/privacy"
             class="underline underline-offset-4 hover:text-primary"
           >
-            Privacy Policy
+            隐私政策
           </a>
-          .
+          。
         </p>
       </CardFooter>
     </Card>

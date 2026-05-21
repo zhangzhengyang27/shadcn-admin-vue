@@ -86,10 +86,10 @@ const roleOptions = roles.map(({ label, value }) => ({
   <Dialog :open="open" @update:open="(state) => { emit('update:open', state) }">
     <DialogContent class="sm:max-w-lg">
       <DialogHeader class="text-start">
-        <DialogTitle>{{ isEdit ? 'Edit User' : 'Add New User' }}</DialogTitle>
+        <DialogTitle>{{ isEdit ? '编辑用户' : '添加新用户' }}</DialogTitle>
         <DialogDescription>
-          {{ isEdit ? 'Update user information here.' : 'Create a new user here.' }}
-          Click Save when done.
+          {{ isEdit ? '在此更新用户信息。' : '在此创建新用户。' }}
+          完成后点击保存。
         </DialogDescription>
       </DialogHeader>
       <div class="h-105 w-[calc(100%+0.75rem)] overflow-y-auto py-1 pe-3">
@@ -97,7 +97,7 @@ const roleOptions = roles.map(({ label, value }) => ({
           <form id="user-form" @submit.prevent="onSubmit" class="space-y-4 px-0.5">
             <FormField name="firstName">
               <FormItem class="grid grid-cols-6 items-center space-y-0 gap-x-4 gap-y-1">
-                <FormLabel class="col-span-2 text-end">First Name</FormLabel>
+                <FormLabel class="col-span-2 text-end">名字</FormLabel>
                 <FormControl>
                   <Input v-model="(form.firstName as string)" placeholder="John" class="col-span-4" autocomplete="off" />
                 </FormControl>
@@ -107,7 +107,7 @@ const roleOptions = roles.map(({ label, value }) => ({
 
             <FormField name="lastName">
               <FormItem class="grid grid-cols-6 items-center space-y-0 gap-x-4 gap-y-1">
-                <FormLabel class="col-span-2 text-end">Last Name</FormLabel>
+                <FormLabel class="col-span-2 text-end">姓氏</FormLabel>
                 <FormControl>
                   <Input v-model="(form.lastName as string)" placeholder="三" class="col-span-4" autocomplete="off" />
                 </FormControl>
@@ -117,7 +117,7 @@ const roleOptions = roles.map(({ label, value }) => ({
 
             <FormField name="username">
               <FormItem class="grid grid-cols-6 items-center space-y-0 gap-x-4 gap-y-1">
-                <FormLabel class="col-span-2 text-end">Username</FormLabel>
+                <FormLabel class="col-span-2 text-end">用户名</FormLabel>
                 <FormControl>
                   <Input v-model="(form.username as string)" placeholder="john_doe" class="col-span-4" />
                 </FormControl>
@@ -127,7 +127,7 @@ const roleOptions = roles.map(({ label, value }) => ({
 
             <FormField name="email">
               <FormItem class="grid grid-cols-6 items-center space-y-0 gap-x-4 gap-y-1">
-                <FormLabel class="col-span-2 text-end">Email</FormLabel>
+                <FormLabel class="col-span-2 text-end">邮箱</FormLabel>
                 <FormControl>
                   <Input v-model="(form.email as string)" placeholder="john.doe@gmail.com" class="col-span-4" />
                 </FormControl>
@@ -137,7 +137,7 @@ const roleOptions = roles.map(({ label, value }) => ({
 
             <FormField name="phoneNumber">
               <FormItem class="grid grid-cols-6 items-center space-y-0 gap-x-4 gap-y-1">
-                <FormLabel class="col-span-2 text-end">Phone Number</FormLabel>
+                <FormLabel class="col-span-2 text-end">手机号码</FormLabel>
                 <FormControl>
                   <Input v-model="(form.phoneNumber as string)" placeholder="+123456789" class="col-span-4" />
                 </FormControl>
@@ -147,11 +147,11 @@ const roleOptions = roles.map(({ label, value }) => ({
 
             <FormField name="role">
               <FormItem class="grid grid-cols-6 items-center space-y-0 gap-x-4 gap-y-1">
-                <FormLabel class="col-span-2 text-end">Role</FormLabel>
+                <FormLabel class="col-span-2 text-end">角色</FormLabel>
                 <SelectDropdown
                   :default-value="form.role as string"
                   @value-change="(val: string) => { form.role = val }"
-                  placeholder="Select role"
+                  placeholder="选择角色"
                   class="col-span-4"
                   :items="roleOptions"
                 />
@@ -161,7 +161,7 @@ const roleOptions = roles.map(({ label, value }) => ({
 
             <FormField name="password">
               <FormItem class="grid grid-cols-6 items-center space-y-0 gap-x-4 gap-y-1">
-                <FormLabel class="col-span-2 text-end">Password</FormLabel>
+                <FormLabel class="col-span-2 text-end">密码</FormLabel>
                 <FormControl>
                   <PasswordInput
                     v-model="(form.password as string)"
@@ -176,7 +176,7 @@ const roleOptions = roles.map(({ label, value }) => ({
 
             <FormField name="confirmPassword">
               <FormItem class="grid grid-cols-6 items-center space-y-0 gap-x-4 gap-y-1">
-                <FormLabel class="col-span-2 text-end">Confirm Password</FormLabel>
+                <FormLabel class="col-span-2 text-end">确认密码</FormLabel>
                 <FormControl>
                   <PasswordInput
                     v-model="(form.confirmPassword as string)"
@@ -193,7 +193,7 @@ const roleOptions = roles.map(({ label, value }) => ({
       </div>
       <DialogFooter>
         <Button type="submit" form="user-form">
-          Save Changes
+          保存更改
         </Button>
       </DialogFooter>
     </DialogContent>

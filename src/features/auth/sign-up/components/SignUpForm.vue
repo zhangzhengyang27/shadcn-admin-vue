@@ -2,7 +2,7 @@
   <form :class="cn('grid gap-3', $attrs.class)" @submit="onSubmit">
     <FormField v-slot="{ componentField }" name="email">
       <FormItem>
-        <FormLabel>Email</FormLabel>
+        <FormLabel>邮箱</FormLabel>
         <FormControl>
           <Input placeholder="name@example.com" v-bind="componentField" />
         </FormControl>
@@ -12,7 +12,7 @@
 
     <FormField v-slot="{ componentField }" name="password">
       <FormItem>
-        <FormLabel>Password</FormLabel>
+        <FormLabel>密码</FormLabel>
         <FormControl>
           <PasswordInput placeholder="********" v-bind="componentField" />
         </FormControl>
@@ -22,7 +22,7 @@
 
     <FormField v-slot="{ componentField }" name="confirmPassword">
       <FormItem>
-        <FormLabel>Confirm Password</FormLabel>
+        <FormLabel>确认密码</FormLabel>
         <FormControl>
           <PasswordInput placeholder="********" v-bind="componentField" />
         </FormControl>
@@ -33,7 +33,7 @@
     <Button type="submit" class="mt-2" :disabled="isLoading">
       <Loader2 v-if="isLoading" class="animate-spin" />
       <UserPlus v-else />
-      Create Account
+      创建账户
     </Button>
 
     <div class="relative my-2">
@@ -42,7 +42,7 @@
       </div>
       <div class="relative flex justify-center text-xs uppercase">
         <span class="bg-background px-2 text-muted-foreground">
-          Or continue with
+          或使用以下方式注册
         </span>
       </div>
     </div>
@@ -85,16 +85,16 @@ const formSchema = toTypedSchema(
     .object({
       email: z
         .string()
-        .min(1, 'Please enter your email address.')
-        .email('Please enter a valid email address.'),
+        .min(1, '请输入您的邮箱地址。')
+        .email('请输入有效的邮箱地址。'),
       password: z
         .string()
-        .min(1, 'Please enter your password.')
-        .min(7, 'Password must be at least 7 characters.'),
-      confirmPassword: z.string().min(1, 'Please confirm your password.'),
+        .min(1, '请输入您的密码。')
+        .min(7, '密码至少需要7个字符。'),
+      confirmPassword: z.string().min(1, '请确认您的密码。'),
     })
     .refine((data) => data.password === data.confirmPassword, {
-      message: 'Passwords do not match.',
+      message: '两次输入的密码不一致。',
       path: ['confirmPassword'],
     })
 )
@@ -114,12 +114,12 @@ const onSubmit = handleSubmit((values) => {
   toast.promise(
     new Promise((resolve) => setTimeout(resolve, 2000)),
     {
-      loading: 'Creating account...',
+      loading: '正在创建账户...',
       success: () => {
         isLoading.value = false
-        return `${values.email} account created successfully.`
+        return `${values.email} 账户创建成功。`
       },
-      error: 'Error',
+      error: '错误',
     }
   )
 })

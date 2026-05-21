@@ -19,7 +19,7 @@ function handleDeleteConfirm() {
     setCurrentRow(null)
     if (row) {
       import('@/lib/show-submitted-data').then(({ showSubmittedData }) => {
-        showSubmittedData(row, 'The following task has been deleted:')
+        showSubmittedData(row, '以下任务已被删除：')
       })
     }
   }, 500)
@@ -69,15 +69,15 @@ function handleDeleteDrawerClose() {
         @update:open="handleDeleteDrawerClose"
         :handle-confirm="handleDeleteConfirm"
         class="max-w-md"
-        :title="`Delete this task: ${currentRow.id}?`"
+        :title="`删除此任务：${currentRow.id} ？`"
       >
         <template #desc>
           <div>
-            You are about to delete ID <strong>{{ currentRow.id }}</strong>. <br />
-            This action cannot be undone.
+            您即将删除 ID 为 <strong>{{ currentRow.id }}</strong>。 <br />
+            此操作无法撤销。
           </div>
         </template>
-        <template #confirmText>Delete</template>
+        <template #confirmText>删除</template>
       </ConfirmDialog>
     </template>
   </div>

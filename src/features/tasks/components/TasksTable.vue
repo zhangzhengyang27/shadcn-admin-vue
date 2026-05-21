@@ -116,7 +116,7 @@ const table = useVueTable({
   <div :class="cn('max-sm:has-[div[role=toolbar]]:mb-16', 'flex flex-1 flex-col gap-4')">
     <DataTableToolbar
       :table="table"
-      search-placeholder="按标题或ID筛选..."
+      search-placeholder="Filter by title or ID..."
       :filters="[
         {
           columnId: 'status',
