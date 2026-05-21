@@ -53,25 +53,7 @@
         </FormItem>
       </FormField>
 
-      <div>
-        <FormField
-          v-for="(_urlField, index) in urlFields"
-          :key="`urls.${index}.value`"
-          :name="`urls.${index}.value`"
-          v-slot="{ field }"
-        >
-          <FormItem>
-            <FormLabel :class="[index !== 0 && 'sr-only']">链接</FormLabel>
-            <FormDescription :class="[index !== 0 && 'sr-only']">添加您的网站、博客或社交媒体资料链接。</FormDescription>
-            <FormControl :class="[index !== 0 && 'mt-1.5']">
-              <Input v-bind="field" />
-            </FormControl>
-            <FormMessage />
-          </FormItem>
-        </FormField>
-
-        <Button type="button" variant="outline" size="sm" class="mt-2" @click="addUrl">添加链接</Button>
-      </div>
+      <UrlFields />
 
       <Button type="submit">更新资料</Button>
     </form>
@@ -79,10 +61,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
 import { z } from 'zod'
 import { toTypedSchema } from '@vee-validate/zod'
-import { useFieldArray } from 'vee-validate'
 import { Button } from '@/components/ui/button'
 import {
   Form,
@@ -102,6 +82,7 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { Textarea } from '@/components/ui/textarea'
+import UrlFields from './UrlFields.vue'
 
 const profileFormSchema = toTypedSchema(
   z.object({
@@ -114,14 +95,6 @@ const profileFormSchema = toTypedSchema(
     urls: z.array(z.object({ value: z.string().url('请输入有效的URL。') })).optional(),
   })
 )
-
-const { fields, push } = useFieldArray('urls')
-
-const urlFields = ref(fields.value || [])
-
-const addUrl = () => {
-  push({ value: '' })
-}
 
 const onSubmit = (values: any) => {
   console.log('Submitted values:', values)
