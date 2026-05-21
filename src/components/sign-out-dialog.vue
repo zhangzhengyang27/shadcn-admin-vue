@@ -29,9 +29,9 @@ function handleSignOut() {
   <ConfirmDialog
     :open="open"
     @update:open="(val: boolean) => emit('update:open', val)"
-    title="Sign Out"
-    desc="Are you sure you want to sign out? You'll need to sign in again to access your account."
-    confirm-text="Sign Out"
+    title="退出登录"
+    desc="您确定要退出登录吗？您需要重新登录才能访问您的账户。"
+    confirm-text="退出登录"
     :destructive="true"
     @confirm="handleSignOut"
   />

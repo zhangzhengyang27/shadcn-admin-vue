@@ -34,16 +34,16 @@ const { handleSubmit, resetForm } = useForm({
 })
 
 const onSubmit = handleSubmit((values) => {
-  toast.success('Notification settings updated!')
+  toast.success('通知设置已更新！')
   console.log(values)
 })
 </script>
 
 <template>
   <div>
-    <h3 class="text-lg font-medium">Notifications</h3>
+    <h3 class="text-lg font-medium">通知</h3>
     <p class="text-sm text-muted-foreground">
-      Configure how you receive notifications.
+      配置您接收通知的方式。
     </p>
   </div>
   <Separator />
@@ -51,8 +51,8 @@ const onSubmit = handleSubmit((values) => {
     <FormField v-slot="{ value, handleChange }" name="communication" type="checkbox">
       <FormItem class="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
         <div class="space-y-0.5">
-          <FormLabel>Communication emails</FormLabel>
-          <FormDescription>Receive emails about product updates and announcements.</FormDescription>
+          <FormLabel>通讯邮件</FormLabel>
+          <FormDescription>接收关于产品更新和公告的邮件。</FormDescription>
         </div>
         <FormControl>
           <Switch :model-value="value" @update:model-value="handleChange" />
@@ -63,8 +63,8 @@ const onSubmit = handleSubmit((values) => {
     <FormField v-slot="{ value, handleChange }" name="marketing" type="checkbox">
       <FormItem class="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
         <div class="space-y-0.5">
-          <FormLabel>Marketing emails</FormLabel>
-          <FormDescription>Receive emails about new features and offers.</FormDescription>
+          <FormLabel>营销邮件</FormLabel>
+          <FormDescription>接收关于新功能和优惠的邮件。</FormDescription>
         </div>
         <FormControl>
           <Switch :model-value="value" @update:model-value="handleChange" />
@@ -75,8 +75,8 @@ const onSubmit = handleSubmit((values) => {
     <FormField v-slot="{ value, handleChange }" name="social" type="checkbox">
       <FormItem class="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
         <div class="space-y-0.5">
-          <FormLabel>Social notifications</FormLabel>
-          <FormDescription>Receive notifications about social interactions.</FormDescription>
+          <FormLabel>社交通知</FormLabel>
+          <FormDescription>接收关于社交互动的通知。</FormDescription>
         </div>
         <FormControl>
           <Switch :model-value="value" @update:model-value="handleChange" />
@@ -87,8 +87,8 @@ const onSubmit = handleSubmit((values) => {
     <FormField v-slot="{ value, handleChange }" name="security" type="checkbox">
       <FormItem class="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
         <div class="space-y-0.5">
-          <FormLabel>Security notifications</FormLabel>
-          <FormDescription>Receive notifications about security events.</FormDescription>
+          <FormLabel>安全通知</FormLabel>
+          <FormDescription>接收关于安全事件的通知。</FormDescription>
         </div>
         <FormControl>
           <Switch :model-value="value" @update:model-value="handleChange" />
@@ -97,8 +97,8 @@ const onSubmit = handleSubmit((values) => {
     </FormField>
 
     <div class="flex justify-start gap-2">
-      <Button type="submit">Save changes</Button>
-      <Button type="button" variant="outline" @click="resetForm()">Reset</Button>
+      <Button type="submit">保存更改</Button>
+      <Button type="button" variant="outline" @click="resetForm()">重置</Button>
     </div>
   </form>
 </template>

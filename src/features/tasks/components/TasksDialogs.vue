@@ -26,14 +26,14 @@ function handleDeleteConfirm() {
 }
 
 function handleUpdateDrawerClose() {
-  setOpen('update')
+  setOpen(null)
   window.setTimeout(() => {
     setCurrentRow(null)
   }, 500)
 }
 
 function handleDeleteDrawerClose() {
-  setOpen('delete')
+  setOpen(null)
   window.setTimeout(() => {
     setCurrentRow(null)
   }, 500)
@@ -45,13 +45,13 @@ function handleDeleteDrawerClose() {
     <TasksMutateDrawer
       key="task-create"
       :open="isCreateOpen"
-      @update:open="() => setOpen('create')"
+      @update:open="() => setOpen(null)"
     />
 
     <TasksImportDialog
       key="tasks-import"
       :open="isImportOpen"
-      @update:open="() => setOpen('import')"
+      @update:open="() => setOpen(null)"
     />
 
     <template v-if="currentRow">

@@ -26,9 +26,9 @@ import {
     <DropdownMenuContent class="w-56" align="end">
       <DropdownMenuLabel class="font-normal">
         <div class="flex flex-col gap-1.5">
-          <p class="text-sm leading-none font-medium">satnaing</p>
+          <p class="text-sm leading-none font-medium">管理员</p>
           <p class="text-xs leading-none text-muted-foreground">
-            satnaingdev@gmail.com
+            admin@example.com
           </p>
         </div>
       </DropdownMenuLabel>
@@ -36,27 +36,27 @@ import {
       <DropdownMenuGroup>
         <DropdownMenuItem as-child>
           <router-link to="/settings">
-            Profile
+            个人资料
             <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
           </router-link>
         </DropdownMenuItem>
         <DropdownMenuItem as-child>
           <router-link to="/settings">
-            Billing
+            账单
             <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
           </router-link>
         </DropdownMenuItem>
         <DropdownMenuItem as-child>
           <router-link to="/settings">
-            Settings
+            设置
             <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
           </router-link>
         </DropdownMenuItem>
-        <DropdownMenuItem>New Team</DropdownMenuItem>
+        <DropdownMenuItem>新建团队</DropdownMenuItem>
       </DropdownMenuGroup>
       <DropdownMenuSeparator />
       <DropdownMenuItem variant="destructive">
-        Log out
+        退出登录
         <DropdownMenuShortcut class="text-current">
           ⇧⌘Q
         </DropdownMenuShortcut>

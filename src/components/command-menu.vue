@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 import {
   CreditCardIcon,
@@ -11,6 +11,7 @@ import {
   UserIcon,
 } from 'lucide-vue-next'
 import { useTheme } from '@/composables/useTheme'
+import { useSearch } from '@/composables/useSearch'
 import { sidebarData } from '@/components/layout/data/sidebar-data'
 import { useAuthStore } from '@/stores/auth'
 import {
@@ -27,11 +28,10 @@ import {
 const router = useRouter()
 const authStore = useAuthStore()
 const { isDark, toggleTheme } = useTheme()
-
-const open = ref(false)
+const { open, setOpen } = useSearch()
 
 function handleOpenChange(value: boolean) {
-  open.value = value
+  setOpen(value)
 }
 
 const navItems = computed(() => {
@@ -39,7 +39,7 @@ const navItems = computed(() => {
 })
 
 function runCommand(command: () => void) {
-  open.value = false
+  setOpen(false)
   command()
 }
 
@@ -47,26 +47,14 @@ function handleLogout() {
   authStore.logout()
   router.push('/sign-in')
 }
-
-// Register keyboard shortcut
-function handleKeydown(e: KeyboardEvent) {
-  if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
-    e.preventDefault()
-    open.value = !open.value
-  }
-}
-
-if (typeof window !== 'undefined') {
-  window.addEventListener('keydown', handleKeydown)
-}
 </script>
 
 <template>
   <CommandDialog :open="open" @update:open="handleOpenChange">
-    <CommandInput placeholder="Type a command or search..." />
+    <CommandInput placeholder="输入命令或搜索..." />
     <CommandList>
-      <CommandEmpty>No results found.</CommandEmpty>
-      <CommandGroup heading="Navigation">
+      <CommandEmpty>未找到结果</CommandEmpty>
+      <CommandGroup heading="导航">
         <CommandItem
           v-for="item in navItems"
           :key="item.title"
@@ -78,58 +66,58 @@ if (typeof window !== 'undefined') {
         </CommandItem>
       </CommandGroup>
       <CommandSeparator />
-      <CommandGroup heading="Settings">
+      <CommandGroup heading="设置">
         <CommandItem
-          value="Profile"
+          value="个人资料"
           @select="runCommand(() => router.push('/settings'))"
         >
           <UserIcon class="me-2 size-4" />
-          Profile
+          个人资料
           <CommandShortcut>⌘P</CommandShortcut>
         </CommandItem>
         <CommandItem
-          value="Billing"
+          value="账单"
           @select="runCommand(() => router.push('/settings'))"
         >
           <CreditCardIcon class="me-2 size-4" />
-          Billing
+          账单
           <CommandShortcut>⌘B</CommandShortcut>
         </CommandItem>
         <CommandItem
-          value="Settings"
+          value="设置"
           @select="runCommand(() => router.push('/settings'))"
         >
           <SettingsIcon class="me-2 size-4" />
-          Settings
+          设置
           <CommandShortcut>⌘S</CommandShortcut>
         </CommandItem>
       </CommandGroup>
       <CommandSeparator />
-      <CommandGroup heading="Theme">
+      <CommandGroup heading="主题">
         <CommandItem
-          value="Toggle Theme"
+          value="切换主题"
           @select="runCommand(() => toggleTheme())"
         >
           <SunIcon v-if="isDark" class="me-2 size-4" />
           <MoonIcon v-else class="me-2 size-4" />
-          {{ isDark ? 'Light Mode' : 'Dark Mode' }}
+          {{ isDark ? '浅色模式' : '深色模式' }}
         </CommandItem>
       </CommandGroup>
       <CommandSeparator />
-      <CommandGroup heading="Help">
+      <CommandGroup heading="帮助">
         <CommandItem
-          value="Help Center"
+          value="帮助中心"
           @select="runCommand(() => router.push('/help-center'))"
         >
           <HelpCircleIcon class="me-2 size-4" />
-          Help Center
+          帮助中心
         </CommandItem>
       </CommandGroup>
       <CommandSeparator />
-      <CommandGroup heading="Account">
-        <CommandItem value="Log out" @select="runCommand(() => handleLogout())">
+      <CommandGroup heading="账户">
+        <CommandItem value="退出登录" @select="runCommand(() => handleLogout())">
           <LogOutIcon class="me-2 size-4" />
-          Log out
+          退出登录
         </CommandItem>
       </CommandGroup>
     </CommandList>

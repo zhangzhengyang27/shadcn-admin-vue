@@ -99,7 +99,7 @@ const roleOptions = roles.map(({ label, value }) => ({
               <FormItem class="grid grid-cols-6 items-center space-y-0 gap-x-4 gap-y-1">
                 <FormLabel class="col-span-2 text-end">名字</FormLabel>
                 <FormControl>
-                  <Input v-model="(form.firstName as string)" placeholder="John" class="col-span-4" autocomplete="off" />
+                  <Input v-model="(form.firstName as string)" placeholder="请输入名字" class="col-span-4" autocomplete="off" />
                 </FormControl>
                 <FormMessage class="col-span-4 col-start-3" />
               </FormItem>

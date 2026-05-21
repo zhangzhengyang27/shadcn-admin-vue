@@ -113,15 +113,15 @@ import {
 import DatePicker from '@/components/date-picker/DatePicker.vue'
 
 const languages = [
-  { label: 'English', value: 'en' },
-  { label: 'French', value: 'fr' },
-  { label: 'German', value: 'de' },
-  { label: 'Spanish', value: 'es' },
-  { label: 'Portuguese', value: 'pt' },
-  { label: 'Russian', value: 'ru' },
-  { label: 'Japanese', value: 'ja' },
-  { label: 'Korean', value: 'ko' },
-  { label: 'Chinese', value: 'zh' },
+  { label: '英语', value: 'en' },
+  { label: '法语', value: 'fr' },
+  { label: '德语', value: 'de' },
+  { label: '西班牙语', value: 'es' },
+  { label: '葡萄牙语', value: 'pt' },
+  { label: '俄语', value: 'ru' },
+  { label: '日语', value: 'ja' },
+  { label: '韩语', value: 'ko' },
+  { label: '中文', value: 'zh' },
 ] as const
 
 const accountFormSchema = toTypedSchema(

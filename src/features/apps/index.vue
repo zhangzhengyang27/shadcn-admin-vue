@@ -71,15 +71,15 @@ const filteredApps = computed(() => {
     <!-- Content -->
     <Main fixed>
       <div>
-        <h1 class="text-2xl font-bold tracking-tight">App Integrations</h1>
+        <h1 class="text-2xl font-bold tracking-tight">应用集成</h1>
         <p class="text-muted-foreground">
-          Here's a list of your apps for the integration!
+          以下是您的应用集成列表！
         </p>
       </div>
       <div class="my-4 flex items-end justify-between sm:my-0 sm:items-center">
         <div class="flex flex-col gap-4 sm:my-4 sm:flex-row">
           <Input
-            placeholder="Filter apps..."
+            placeholder="筛选应用..."
             class="h-9 w-40 lg:w-62.5"
             v-model="searchTerm"
           />
@@ -137,7 +137,7 @@ const filteredApps = computed(() => {
                   : ''
               "
             >
-              {{ app.connected ? 'Connected' : 'Connect' }}
+              {{ app.connected ? '已连接' : '连接' }}
             </Button>
           </div>
           <div>

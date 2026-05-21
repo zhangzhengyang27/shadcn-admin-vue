@@ -26,25 +26,25 @@ import { type SidebarData } from '../types'
 
 export const sidebarData: SidebarData = {
   user: {
-    name: 'satnaing',
-    email: 'satnaingdev@gmail.com',
+    name: '管理员',
+    email: 'admin@example.com',
     avatar: '/avatars/shadcn.jpg',
   },
   teams: [
     {
-      name: 'Shadcn Admin',
+      name: 'Shadcn 管理后台',
       logo: Command,
       plan: 'Vite + ShadcnUI',
     },
     {
-      name: 'Acme Inc',
+      name: '示例企业',
       logo: GalleryVerticalEnd,
-      plan: 'Enterprise',
+      plan: '企业版',
     },
     {
-      name: 'Acme Corp.',
+      name: '示例公司',
       logo: AudioWaveform,
-      plan: 'Startup',
+      plan: '初创版',
     },
   ],
   navGroups: [
@@ -76,23 +76,6 @@ export const sidebarData: SidebarData = {
           title: '用户',
           url: '/users',
           icon: Users,
-        },
-        {
-          title: 'Clerk 安全认证',
-          items: [
-            {
-              title: '登录',
-              url: '/clerk/sign-in',
-            },
-            {
-              title: '注册',
-              url: '/clerk/sign-up',
-            },
-            {
-              title: '用户管理',
-              url: '/clerk/user-management',
-            },
-          ],
         },
       ],
     },

@@ -15,10 +15,10 @@ import { Switch } from '@/components/ui/switch'
 const open = ref(false)
 
 const configOptions = ref([
-  { id: 'sidebar', label: 'Show Sidebar', enabled: true },
-  { id: 'header', label: 'Show Header', enabled: true },
-  { id: 'breadcrumbs', label: 'Show Breadcrumbs', enabled: true },
-  { id: 'footer', label: 'Show Footer', enabled: false },
+  { id: 'sidebar', label: '显示侧边栏', enabled: true },
+  { id: 'header', label: '显示头部', enabled: true },
+  { id: 'breadcrumbs', label: '显示面包屑', enabled: true },
+  { id: 'footer', label: '显示页脚', enabled: false },
 ])
 </script>
 
@@ -44,8 +44,8 @@ const configOptions = ref([
     </SheetTrigger>
     <SheetContent>
       <SheetHeader>
-        <SheetTitle>Layout Configuration</SheetTitle>
-        <SheetDescription>Customize the layout and display options for your pages.</SheetDescription>
+        <SheetTitle>布局配置</SheetTitle>
+        <SheetDescription>自定义页面的布局和显示选项。</SheetDescription>
       </SheetHeader>
 
       <div class="mt-6 space-y-4">
@@ -63,8 +63,8 @@ const configOptions = ref([
         <Separator />
 
         <div class="flex justify-end gap-2 pt-4">
-          <Button variant="outline" @click="open = false">Cancel</Button>
-          <Button @click="open = false">Save Configuration</Button>
+          <Button variant="outline" @click="open = false">取消</Button>
+          <Button @click="open = false">保存配置</Button>
         </div>
       </div>
     </SheetContent>

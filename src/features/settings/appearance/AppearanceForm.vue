@@ -9,22 +9,22 @@ import { Separator } from '@/components/ui/separator'
 const { mode, setMode } = useTheme()
 
 const appearanceModes = [
-  { value: 'light' as const, label: 'Light', icon: SunIcon },
-  { value: 'dark' as const, label: 'Dark', icon: MoonIcon },
-  { value: 'system' as const, label: 'System', icon: MonitorIcon },
+  { value: 'light' as const, label: '浅色', icon: SunIcon },
+  { value: 'dark' as const, label: '深色', icon: MoonIcon },
+  { value: 'system' as const, label: '系统', icon: MonitorIcon },
 ]
 
 function handleModeChange(value: 'light' | 'dark' | 'system') {
   setMode(value)
-  toast.success(`Switched to ${value} mode`)
+  toast.success(`已切换到${value === 'light' ? '浅色' : value === 'dark' ? '深色' : '系统'}模式`)
 }
 </script>
 
 <template>
   <div>
-    <h3 class="text-lg font-medium">Appearance</h3>
+    <h3 class="text-lg font-medium">外观</h3>
     <p class="text-sm text-muted-foreground">
-      Customize the look and theme of the application.
+      自定义应用的外观和主题。
     </p>
   </div>
   <Separator />

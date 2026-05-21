@@ -24,10 +24,10 @@ import { Switch } from '@/components/ui/switch'
 
 const accountFormSchema = toTypedSchema(
   z.object({
-    name: z.string().min(2, 'Name must be at least 2 characters.').max(30, 'Name cannot exceed 30 characters.'),
-    dob: z.string().min(1, 'Please select a date.'),
-    language: z.string().min(1, 'Please select a language.'),
-    timeZone: z.string().min(1, 'Please select a time zone.'),
+    name: z.string().min(2, '姓名至少需要2个字符。').max(30, '姓名不能超过30个字符。'),
+    dob: z.string().min(1, '请选择一个日期。'),
+    language: z.string().min(1, '请选择一种语言。'),
+    timeZone: z.string().min(1, '请选择一个时区。'),
     marketing: z.boolean().default(false).optional(),
   })
 )
@@ -44,49 +44,49 @@ const { handleSubmit, resetForm } = useForm({
 })
 
 const onSubmit = handleSubmit((values) => {
-  toast.success('Account settings updated!')
+  toast.success('账户设置已更新！')
   console.log(values)
 })
 </script>
 
 <template>
   <div>
-    <h3 class="text-lg font-medium">Account</h3>
+    <h3 class="text-lg font-medium">账户</h3>
     <p class="text-sm text-muted-foreground">
-      Update your account settings. Click save when finished.
+      更新您的账户设置，完成后点击保存。
     </p>
   </div>
   <Separator />
   <form @submit="onSubmit" class="space-y-8">
     <FormField v-slot="{ componentField }" name="name">
       <FormItem>
-        <FormLabel>Name</FormLabel>
+        <FormLabel>姓名</FormLabel>
         <FormControl>
-          <Input type="text" placeholder="Your name" v-bind="componentField" />
+          <Input type="text" placeholder="您的姓名" v-bind="componentField" />
         </FormControl>
-        <FormDescription>This is your public display name.</FormDescription>
+        <FormDescription>这是您的公开显示名称。</FormDescription>
         <FormMessage />
       </FormItem>
     </FormField>
 
     <FormField v-slot="{ componentField }" name="dob">
       <FormItem>
-        <FormLabel>Date of Birth</FormLabel>
+        <FormLabel>出生日期</FormLabel>
         <FormControl>
           <Input type="date" v-bind="componentField" />
         </FormControl>
-        <FormDescription>Your date of birth is used for verification.</FormDescription>
+        <FormDescription>您的出生日期用于身份验证。</FormDescription>
         <FormMessage />
       </FormItem>
     </FormField>
 
     <FormField v-slot="{ componentField }" name="language">
       <FormItem>
-        <FormLabel>Language</FormLabel>
+        <FormLabel>语言</FormLabel>
         <Select v-bind="componentField">
           <FormControl>
             <SelectTrigger>
-              <SelectValue placeholder="Select language" />
+              <SelectValue placeholder="选择语言" />
             </SelectTrigger>
           </FormControl>
           <SelectContent>
@@ -95,18 +95,18 @@ const onSubmit = handleSubmit((values) => {
             </SelectItem>
           </SelectContent>
         </Select>
-        <FormDescription>This is the language for the interface.</FormDescription>
+        <FormDescription>这是界面使用的语言。</FormDescription>
         <FormMessage />
       </FormItem>
     </FormField>
 
     <FormField v-slot="{ componentField }" name="timeZone">
       <FormItem>
-        <FormLabel>Time Zone</FormLabel>
+        <FormLabel>时区</FormLabel>
         <Select v-bind="componentField">
           <FormControl>
             <SelectTrigger>
-              <SelectValue placeholder="Select time zone" />
+              <SelectValue placeholder="选择时区" />
             </SelectTrigger>
           </FormControl>
           <SelectContent>
@@ -115,7 +115,7 @@ const onSubmit = handleSubmit((values) => {
             </SelectItem>
           </SelectContent>
         </Select>
-        <FormDescription>This is your local time zone.</FormDescription>
+        <FormDescription>这是您所在的本地时区。</FormDescription>
         <FormMessage />
       </FormItem>
     </FormField>
@@ -123,8 +123,8 @@ const onSubmit = handleSubmit((values) => {
     <FormField v-slot="{ value, handleChange }" name="marketing" type="checkbox">
       <FormItem class="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
         <div class="space-y-0.5">
-          <FormLabel>Marketing emails</FormLabel>
-          <FormDescription>Receive emails about new features and updates.</FormDescription>
+          <FormLabel>营销邮件</FormLabel>
+          <FormDescription>接收关于新功能和更新的邮件。</FormDescription>
         </div>
         <FormControl>
           <Switch :model-value="value" @update:model-value="handleChange" />
@@ -133,8 +133,8 @@ const onSubmit = handleSubmit((values) => {
     </FormField>
 
     <div class="flex justify-start gap-2">
-      <Button type="submit">Save changes</Button>
-      <Button type="button" variant="outline" @click="resetForm()">Reset</Button>
+      <Button type="submit">保存更改</Button>
+      <Button type="button" variant="outline" @click="resetForm()">重置</Button>
     </div>
   </form>
 </template>

@@ -83,13 +83,13 @@ function handleDelete() {
         </Label>
 
         <Alert variant="destructive">
-          <AlertTitle>Warning!</AlertTitle>
+          <AlertTitle>警告！</AlertTitle>
           <AlertDescription>
-            Please proceed with caution. This action cannot be undone.
+            请谨慎操作。此操作无法撤销。
           </AlertDescription>
         </Alert>
       </form>
     </template>
-    <template #confirmText>Delete</template>
+    <template #confirmText>删除</template>
   </ConfirmDialog>
 </template>

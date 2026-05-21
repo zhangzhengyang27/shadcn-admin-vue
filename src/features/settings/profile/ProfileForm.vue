@@ -17,9 +17,9 @@ import { Textarea } from '@/components/ui/textarea'
 
 const profileFormSchema = toTypedSchema(
   z.object({
-    username: z.string().min(2, { message: 'Username must be at least 2 characters.' }).max(30, { message: 'Username cannot exceed 30 characters.' }),
-    email: z.string().email({ message: 'Please enter a valid email address.' }),
-    bio: z.string().max(160, { message: 'Bio cannot exceed 160 characters.' }).optional(),
+    username: z.string().min(2, { message: '用户名至少需要2个字符。' }).max(30, { message: '用户名不能超过30个字符。' }),
+    email: z.string().email({ message: '请输入有效的邮箱地址。' }),
+    bio: z.string().max(160, { message: '简介不能超过160个字符。' }).optional(),
     urls: z.array(z.string()).optional(),
   })
 )
@@ -34,56 +34,56 @@ const { handleSubmit, resetForm } = useForm({
 })
 
 const onSubmit = handleSubmit((values) => {
-  toast.success('Profile updated!')
+  toast.success('个人资料已更新！')
   console.log(values)
 })
 </script>
 
 <template>
   <div>
-    <h3 class="text-lg font-medium">Profile</h3>
+    <h3 class="text-lg font-medium">个人资料</h3>
     <p class="text-sm text-muted-foreground">
-      Manage your profile information.
+      管理您的个人信息。
     </p>
   </div>
   <Separator />
   <form @submit="onSubmit" class="space-y-8">
     <FormField v-slot="{ componentField }" name="username">
       <FormItem>
-        <FormLabel>Username</FormLabel>
+        <FormLabel>用户名</FormLabel>
         <FormControl>
-          <Input placeholder="Enter username" v-bind="componentField" />
+          <Input placeholder="输入用户名" v-bind="componentField" />
         </FormControl>
-        <FormDescription>This is your public display name.</FormDescription>
+        <FormDescription>这是您的公开显示名称。</FormDescription>
         <FormMessage />
       </FormItem>
     </FormField>
 
     <FormField v-slot="{ componentField }" name="email">
       <FormItem>
-        <FormLabel>Email</FormLabel>
+        <FormLabel>邮箱</FormLabel>
         <FormControl>
-          <Input type="email" placeholder="Enter email" v-bind="componentField" />
+          <Input type="email" placeholder="输入邮箱" v-bind="componentField" />
         </FormControl>
-        <FormDescription>Your email address is used for login and notifications.</FormDescription>
+        <FormDescription>您的邮箱地址用于登录和接收通知。</FormDescription>
         <FormMessage />
       </FormItem>
     </FormField>
 
     <FormField v-slot="{ componentField }" name="bio">
       <FormItem>
-        <FormLabel>Bio</FormLabel>
+        <FormLabel>简介</FormLabel>
         <FormControl>
-          <Textarea placeholder="Tell us about yourself" v-bind="componentField" />
+          <Textarea placeholder="介绍一下您自己" v-bind="componentField" />
         </FormControl>
-        <FormDescription>Briefly describe yourself, max 160 characters.</FormDescription>
+        <FormDescription>简要描述一下自己，最多160个字符。</FormDescription>
         <FormMessage />
       </FormItem>
     </FormField>
 
     <div class="flex justify-start gap-2">
-      <Button type="submit">Save changes</Button>
-      <Button type="button" variant="outline" @click="resetForm()">Reset</Button>
+      <Button type="submit">保存更改</Button>
+      <Button type="button" variant="outline" @click="resetForm()">重置</Button>
     </div>
   </form>
 </template>

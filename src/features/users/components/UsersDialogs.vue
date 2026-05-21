@@ -13,14 +13,14 @@ const isEditOpen = computed(() => open.value === 'edit')
 const isDeleteOpen = computed(() => open.value === 'delete')
 
 function handleEditDrawerClose() {
-  setOpen('edit')
+  setOpen(null)
   window.setTimeout(() => {
     setCurrentRow(null)
   }, 500)
 }
 
 function handleDeleteDrawerClose() {
-  setOpen('delete')
+  setOpen(null)
   window.setTimeout(() => {
     setCurrentRow(null)
   }, 500)
@@ -32,13 +32,13 @@ function handleDeleteDrawerClose() {
     <UsersActionDialog
       key="user-add"
       :open="isAddOpen"
-      @update:open="() => setOpen('add')"
+      @update:open="() => setOpen(null)"
     />
 
     <UsersInviteDialog
       key="user-invite"
       :open="isInviteOpen"
-      @update:open="() => setOpen('invite')"
+      @update:open="() => setOpen(null)"
     />
 
     <template v-if="currentRow">
