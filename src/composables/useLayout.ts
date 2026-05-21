@@ -1,13 +1,13 @@
 import { ref, computed } from 'vue'
 
 type SidebarType = 'default' | 'floating' | 'inset'
-type LayoutMode = 'compact' | 'full'
+type LayoutMode = 'default' | 'compact' | 'full'
 type SidebarCollapsible = 'none' | 'icon' | 'offcanvas'
 type SidebarVariant = 'sidebar' | 'inset' | 'floating'
 
 export function useLayout() {
-  const sidebarType = ref<SidebarType>('default')
-  const layoutMode = ref<LayoutMode>('full')
+  const sidebarType = ref<SidebarType>('inset')
+  const layoutMode = ref<LayoutMode>('default')
   const sidebarOpen = ref(true)
 
   const isCompact = computed(() => layoutMode.value === 'compact')

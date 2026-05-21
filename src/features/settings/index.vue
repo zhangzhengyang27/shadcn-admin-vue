@@ -34,13 +34,17 @@ const sidebarNavItems = [
 
       <Separator class="my-4 lg:my-6" />
 
-      <div class="flex flex-1 flex-col space-y-2 overflow-hidden md:space-y-2 lg:flex-row lg:space-y-0 lg:space-x-12">
-        <aside class="top-0 lg:sticky lg:w-1/5">
+      <div class="flex flex-1 flex-col gap-6 overflow-hidden lg:flex-row lg:gap-10">
+        <aside class="w-full shrink-0 lg:w-44">
           <SidebarNav :items="sidebarNavItems" />
         </aside>
 
-        <div class="flex w-full overflow-y-hidden p-1">
-          <RouterView />
+        <Separator orientation="vertical" class="hidden lg:block" />
+
+        <div class="flex-1 overflow-y-auto pb-8">
+          <RouterView v-slot="{ Component }">
+            <component :is="Component" />
+          </RouterView>
         </div>
       </div>
     </Main>

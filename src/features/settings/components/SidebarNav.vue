@@ -3,7 +3,6 @@ import { ref, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
-import { ScrollArea } from '@/components/ui/scroll-area'
 import {
   Select,
   SelectContent,
@@ -71,11 +70,11 @@ const handleSelect = (value: AcceptableValue) => {
     </div>
 
     <!-- Desktop Sidebar -->
-    <ScrollArea orientation="horizontal" type="always" class="hidden w-full min-w-40 bg-background px-1 py-2 md:block">
+    <div class="hidden w-full min-w-40 bg-background px-1 py-2 md:block">
       <nav
         :class="
           cn(
-            'flex space-x-2 py-1 lg:flex-col lg:space-y-1 lg:space-x-0',
+            'flex flex-col gap-1',
             props.className
           )
         "
@@ -88,18 +87,18 @@ const handleSelect = (value: AcceptableValue) => {
             cn(
               Button.variant?.({ variant: 'ghost' }) || '',
               currentPath === item.href
-                ? 'bg-muted hover:bg-accent'
-                : 'hover:bg-accent hover:underline',
-              'justify-start'
+                ? 'bg-muted font-semibold'
+                : 'text-muted-foreground hover:text-foreground hover:bg-muted/50',
+              'justify-start h-auto py-2 px-3'
             )
           "
         >
-          <span class="me-2">
+          <span class="mr-3 shrink-0">
             <component :is="iconMap[item.icon]" :size="18" />
           </span>
           {{ item.title }}
         </RouterLink>
       </nav>
-    </ScrollArea>
+    </div>
   </div>
 </template>
