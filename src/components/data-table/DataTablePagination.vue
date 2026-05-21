@@ -32,26 +32,15 @@ const pageNumbers = computed(() => getPageNumbers(currentPage.value, totalPages.
 </script>
 
 <template>
-  <div
-    :class="
-      cn(
-        'flex items-center justify-between overflow-clip px-2',
-        '@max-2xl/content:flex-col-reverse @max-2xl/content:gap-4',
-        props.class
-      )
-    "
-    style="overflow-clip-margin: 1"
-  >
-    <div class="flex w-full items-center justify-between">
-      <div class="flex w-25 items-center justify-center text-sm font-medium @2xl/content:hidden">
-        第 {{ currentPage }} 页，共 {{ totalPages }} 页
-      </div>
-      <div class="flex items-center gap-2 @max-2xl/content:flex-row-reverse">
+  <div :class="cn('flex items-center justify-between px-2', props.class)">
+    <div class="flex items-center gap-4">
+      <p class="text-sm font-medium">共 {{ table.getFilteredRowModel().rows.length }} 条</p>
+      <div class="flex items-center gap-2">
         <Select
           :model-value="`${table.getState().pagination.pageSize}`"
           @update:model-value="(value) => table.setPageSize(Number(value))"
         >
-          <SelectTrigger class="h-8 w-17.5">
+          <SelectTrigger class="h-8 w-[70px]">
             <SelectValue :placeholder="String(table.getState().pagination.pageSize)" />
           </SelectTrigger>
           <SelectContent side="top">
@@ -60,18 +49,18 @@ const pageNumbers = computed(() => getPageNumbers(currentPage.value, totalPages.
             </SelectItem>
           </SelectContent>
         </Select>
-        <p class="hidden text-sm font-medium sm:block">每页行数</p>
+        <span class="text-sm font-medium whitespace-nowrap">条/页</span>
       </div>
     </div>
 
-    <div class="flex items-center sm:space-x-6 lg:space-x-8">
-      <div class="flex w-25 items-center justify-center text-sm font-medium @max-3xl/content:hidden">
-        第 {{ currentPage }} 页，共 {{ totalPages }} 页
-      </div>
-      <div class="flex items-center space-x-2">
+    <div class="flex items-center gap-4">
+      <span class="text-sm font-medium whitespace-nowrap">
+        第 {{ currentPage }} 页 / 共 {{ totalPages }} 页
+      </span>
+      <div class="flex items-center space-x-1">
         <Button
           variant="outline"
-          class="size-8 p-0 @max-md/content:hidden"
+          class="size-8 p-0 hidden @md/content:block"
           @click="table.setPageIndex(0)"
           :disabled="!table.getCanPreviousPage()"
         >
@@ -89,18 +78,14 @@ const pageNumbers = computed(() => getPageNumbers(currentPage.value, totalPages.
           <ChevronLeftIcon class="h-4 w-4" />
         </Button>
 
-        <!-- Page number buttons -->
         <template v-for="(pageNumber, index) in pageNumbers" :key="`${pageNumber}-${index}`">
-          <div v-if="pageNumber === '...'" class="flex items-center">
-            <span class="px-1 text-sm text-muted-foreground">...</span>
-          </div>
+          <span v-if="pageNumber === '...'" class="px-1 text-sm text-muted-foreground">...</span>
           <Button
             v-else
             :variant="currentPage === pageNumber ? 'default' : 'outline'"
-            class="h-8 min-w-8 px-2"
+            class="h-8 min-w-8 px-2 text-sm"
             @click="table.setPageIndex((pageNumber as number) - 1)"
           >
-            <span class="sr-only">跳转到第 {{ pageNumber }} 页</span>
             {{ pageNumber }}
           </Button>
         </template>
@@ -117,7 +102,7 @@ const pageNumbers = computed(() => getPageNumbers(currentPage.value, totalPages.
 
         <Button
           variant="outline"
-          class="size-8 p-0 @max-md/content:hidden"
+          class="size-8 p-0 hidden @md/content:block"
           @click="table.setPageIndex(table.getPageCount() - 1)"
           :disabled="!table.getCanNextPage()"
         >
