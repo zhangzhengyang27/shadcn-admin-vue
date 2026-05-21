@@ -6,6 +6,8 @@ import { cn } from '@/lib/utils'
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar'
 import { provideSearch } from '@/composables/useSearch'
 import AppSidebar from './AppSidebar.vue'
+import NavUser from './NavUser.vue'
+import { sidebarData } from './data/sidebar-data'
 // import SkipToMain from '@/components/skip-to-main.vue'
 
 interface Props {
@@ -27,6 +29,7 @@ provideSearch()
   <SidebarProvider :default-open="defaultOpen">
     <!-- <SkipToMain /> -->
     <AppSidebar />
+    <NavUser :user="sidebarData.user" />
     <SidebarInset
       :class="cn(
         // Set content container, so we can use container queries
