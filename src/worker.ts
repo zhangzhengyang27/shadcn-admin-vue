@@ -11,4 +11,4 @@ export default {
     }
     return env.ASSETS.fetch(new Request(new URL("/", url.toString()), request))
   },
-} satisfies ExportedHandler<Env>
+}
