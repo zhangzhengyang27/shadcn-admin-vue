@@ -17,17 +17,17 @@
 
 ## 功能模块
 
-| 模块 | 说明 |
-| --- | --- |
-| Dashboard | 仪表盘，数据概览与图表展示 |
-| Tasks | 任务管理 |
-| Users | 用户管理 |
-| Apps | 应用模块 |
-| Chats | 聊天功能 |
-| Settings | 系统设置（个人资料、外观、通知等） |
-| Auth | 登录认证 |
-| Help Center | 帮助中心 |
-| Errors | 错误页面（404 等） |
+| 模块        | 说明                               |
+| ----------- | ---------------------------------- |
+| Dashboard   | 仪表盘，数据概览与图表展示         |
+| Tasks       | 任务管理                           |
+| Users       | 用户管理                           |
+| Apps        | 应用模块                           |
+| Chats       | 聊天功能                           |
+| Settings    | 系统设置（个人资料、外观、通知等） |
+| Auth        | 登录认证                           |
+| Help Center | 帮助中心                           |
+| Errors      | 错误页面（404 等）                 |
 
 ## UI 组件
 
@@ -71,19 +71,6 @@ src/
 ├── App.vue
 └── main.ts
 ```
-
-## 部署
-
-项目使用 Cloudflare Workers + GitHub Actions 自动部署，push 到 `main` 分支即自动构建发布。
-
-配置步骤详见 [wrangler.toml](wrangler.toml) 和 [.github/workflows/deploy.yml](.github/workflows/deploy.yml)。
-
-### GitHub Secrets 配置
-
-| Secret | 说明 | 获取方式 |
-| --- | --- | --- |
-| `CLOUDFLARE_API_TOKEN` | Cloudflare API 令牌 | [创建 Token](https://dash.cloudflare.com/profile/api-tokens)，选择 Edit Cloudflare Workers 模板 |
-| `CLOUDFLARE_ACCOUNT_ID` | Cloudflare 账户 ID | Dashboard URL 中的账户 ID，或域名 Overview 页面右侧栏 |
 
 ## 致谢
 
