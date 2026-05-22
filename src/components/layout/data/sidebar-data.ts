@@ -20,167 +20,167 @@ import {
   ShieldCheck,
   AudioWaveform,
   Command,
-  GalleryVerticalEnd,
-} from 'lucide-vue-next'
-import { type SidebarData } from '../types'
+  GalleryVerticalEnd
+} from "lucide-vue-next"
+import { type SidebarData } from "../types"
 
 export const sidebarData: SidebarData = {
   user: {
-    name: '管理员',
-    email: 'admin@example.com',
-    avatar: '/avatars/shadcn.jpg',
+    name: "管理员",
+    email: "xiaoye@example.com",
+    avatar: "/avatars/shadcn.jpg"
   },
   teams: [
     {
-      name: 'Shadcn 管理后台',
+      name: "Shadcn 管理后台",
       logo: Command,
-      plan: 'Vite + ShadcnUI',
+      plan: "Vite + ShadcnUI"
     },
     {
-      name: '示例企业',
+      name: "示例企业",
       logo: GalleryVerticalEnd,
-      plan: '企业版',
+      plan: "企业版"
     },
     {
-      name: '示例公司',
+      name: "示例公司",
       logo: AudioWaveform,
-      plan: '初创版',
-    },
+      plan: "初创版"
+    }
   ],
   navGroups: [
     {
-      title: '通用',
+      title: "通用",
       items: [
         {
-          title: '仪表盘',
-          url: '/',
-          icon: LayoutDashboard,
+          title: "仪表盘",
+          url: "/",
+          icon: LayoutDashboard
         },
         {
-          title: '任务',
-          url: '/tasks',
-          icon: ListTodo,
+          title: "任务",
+          url: "/tasks",
+          icon: ListTodo
         },
         {
-          title: '应用',
-          url: '/apps',
-          icon: Package,
+          title: "应用",
+          url: "/apps",
+          icon: Package
         },
         {
-          title: '聊天',
-          url: '/chats',
-          badge: '3',
-          icon: MessagesSquare,
+          title: "聊天",
+          url: "/chats",
+          badge: "3",
+          icon: MessagesSquare
         },
         {
-          title: '用户',
-          url: '/users',
-          icon: Users,
-        },
-      ],
+          title: "用户",
+          url: "/users",
+          icon: Users
+        }
+      ]
     },
     {
-      title: '页面',
+      title: "页面",
       items: [
         {
-          title: '认证',
+          title: "认证",
           icon: ShieldCheck,
           items: [
             {
-              title: '登录',
-              url: '/sign-in',
+              title: "登录",
+              url: "/sign-in"
             },
             {
-              title: '登录（双栏）',
-              url: '/sign-in-2',
+              title: "登录（双栏）",
+              url: "/sign-in-2"
             },
             {
-              title: '注册',
-              url: '/sign-up',
+              title: "注册",
+              url: "/sign-up"
             },
             {
-              title: '忘记密码',
-              url: '/forgot-password',
+              title: "忘记密码",
+              url: "/forgot-password"
             },
             {
-              title: '验证码',
-              url: '/otp',
-            },
-          ],
+              title: "验证码",
+              url: "/otp"
+            }
+          ]
         },
         {
-          title: '错误页',
+          title: "错误页",
           icon: Bug,
           items: [
             {
-              title: '未授权',
-              url: '/errors/unauthorized',
-              icon: Lock,
+              title: "未授权",
+              url: "/errors/unauthorized",
+              icon: Lock
             },
             {
-              title: '禁止访问',
-              url: '/errors/forbidden',
-              icon: UserX,
+              title: "禁止访问",
+              url: "/errors/forbidden",
+              icon: UserX
             },
             {
-              title: '页面不存在',
-              url: '/errors/not-found',
-              icon: FileX,
+              title: "页面不存在",
+              url: "/errors/not-found",
+              icon: FileX
             },
             {
-              title: '服务器内部错误',
-              url: '/errors/internal-server-error',
-              icon: ServerOff,
+              title: "服务器内部错误",
+              url: "/errors/internal-server-error",
+              icon: ServerOff
             },
             {
-              title: '维护中',
-              url: '/errors/maintenance-error',
-              icon: Construction,
-            },
-          ],
-        },
-      ],
+              title: "维护中",
+              url: "/errors/maintenance-error",
+              icon: Construction
+            }
+          ]
+        }
+      ]
     },
     {
-      title: '其他',
+      title: "其他",
       items: [
         {
-          title: '设置',
+          title: "设置",
           icon: Settings,
           items: [
             {
-              title: '个人资料',
-              url: '/settings',
-              icon: UserCog,
+              title: "个人资料",
+              url: "/settings",
+              icon: UserCog
             },
             {
-              title: '账户',
-              url: '/settings/account',
-              icon: Wrench,
+              title: "账户",
+              url: "/settings/account",
+              icon: Wrench
             },
             {
-              title: '外观',
-              url: '/settings/appearance',
-              icon: Palette,
+              title: "外观",
+              url: "/settings/appearance",
+              icon: Palette
             },
             {
-              title: '通知',
-              url: '/settings/notifications',
-              icon: Bell,
+              title: "通知",
+              url: "/settings/notifications",
+              icon: Bell
             },
             {
-              title: '显示',
-              url: '/settings/display',
-              icon: Monitor,
-            },
-          ],
+              title: "显示",
+              url: "/settings/display",
+              icon: Monitor
+            }
+          ]
         },
         {
-          title: '帮助中心',
-          url: '/help-center',
-          icon: HelpCircle,
-        },
-      ],
-    },
-  ],
+          title: "帮助中心",
+          url: "/help-center",
+          icon: HelpCircle
+        }
+      ]
+    }
+  ]
 }

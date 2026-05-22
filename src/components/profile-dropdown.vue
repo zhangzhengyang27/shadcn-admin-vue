@@ -28,7 +28,7 @@ import {
         <div class="flex flex-col gap-1.5">
           <p class="text-sm leading-none font-medium">管理员</p>
           <p class="text-xs leading-none text-muted-foreground">
-            admin@example.com
+            xiaoye@example.com
           </p>
         </div>
       </DropdownMenuLabel>
