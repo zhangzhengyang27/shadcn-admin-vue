@@ -41,27 +41,27 @@ const isEdit = !!props.currentRow
 const form = reactive<Record<string, string | boolean>>(
   isEdit
     ? {
-        firstName: props.currentRow?.firstName ?? '',
-        lastName: props.currentRow?.lastName ?? '',
-        username: props.currentRow?.username ?? '',
-        email: props.currentRow?.email ?? '',
-        role: props.currentRow?.role ?? '',
-        phoneNumber: props.currentRow?.phoneNumber ?? '',
-        password: '',
-        confirmPassword: '',
-        isEdit,
-      }
+      firstName: props.currentRow?.firstName ?? '',
+      lastName: props.currentRow?.lastName ?? '',
+      username: props.currentRow?.username ?? '',
+      email: props.currentRow?.email ?? '',
+      role: props.currentRow?.role ?? '',
+      phoneNumber: props.currentRow?.phoneNumber ?? '',
+      password: '',
+      confirmPassword: '',
+      isEdit,
+    }
     : {
-        firstName: '',
-        lastName: '',
-        username: '',
-        email: '',
-        role: '',
-        phoneNumber: '',
-        password: '',
-        confirmPassword: '',
-        isEdit,
-      }
+      firstName: '',
+      lastName: '',
+      username: '',
+      email: '',
+      role: '',
+      phoneNumber: '',
+      password: '',
+      confirmPassword: '',
+      isEdit,
+    }
 )
 
 const isPasswordTouched = ref(false)
@@ -99,7 +99,8 @@ const roleOptions = roles.map(({ label, value }) => ({
               <FormItem class="grid grid-cols-6 items-center space-y-0 gap-x-4 gap-y-1">
                 <FormLabel class="col-span-2 text-end">名字</FormLabel>
                 <FormControl>
-                  <Input v-model="(form.firstName as string)" placeholder="请输入名字" class="col-span-4" autocomplete="off" />
+                  <Input v-model="(form.firstName as string)" placeholder="请输入名字" class="col-span-4"
+                    autocomplete="off" />
                 </FormControl>
                 <FormMessage class="col-span-4 col-start-3" />
               </FormItem>
@@ -129,7 +130,7 @@ const roleOptions = roles.map(({ label, value }) => ({
               <FormItem class="grid grid-cols-6 items-center space-y-0 gap-x-4 gap-y-1">
                 <FormLabel class="col-span-2 text-end">邮箱</FormLabel>
                 <FormControl>
-                  <Input v-model="(form.email as string)" placeholder="john.doe@gmail.com" class="col-span-4" />
+                  <Input v-model="(form.email as string)" placeholder="xiaoye@gmail.com" class="col-span-4" />
                 </FormControl>
                 <FormMessage class="col-span-4 col-start-3" />
               </FormItem>
@@ -148,13 +149,9 @@ const roleOptions = roles.map(({ label, value }) => ({
             <FormField name="role">
               <FormItem class="grid grid-cols-6 items-center space-y-0 gap-x-4 gap-y-1">
                 <FormLabel class="col-span-2 text-end">角色</FormLabel>
-                <SelectDropdown
-                  :default-value="form.role as string"
-                  @value-change="(val: string) => { form.role = val }"
-                  placeholder="选择角色"
-                  class="col-span-4"
-                  :items="roleOptions"
-                />
+                <SelectDropdown :default-value="form.role as string"
+                  @value-change="(val: string) => { form.role = val }" placeholder="选择角色" class="col-span-4"
+                  :items="roleOptions" />
                 <FormMessage class="col-span-4 col-start-3" />
               </FormItem>
             </FormField>
@@ -163,12 +160,8 @@ const roleOptions = roles.map(({ label, value }) => ({
               <FormItem class="grid grid-cols-6 items-center space-y-0 gap-x-4 gap-y-1">
                 <FormLabel class="col-span-2 text-end">密码</FormLabel>
                 <FormControl>
-                  <PasswordInput
-                    v-model="(form.password as string)"
-                    placeholder="e.g., S3cur3P@ssw0rd"
-                    class="col-span-4"
-                    @update:model-value="isPasswordTouched = true"
-                  />
+                  <PasswordInput v-model="(form.password as string)" placeholder="e.g., S3cur3P@ssw0rd"
+                    class="col-span-4" @update:model-value="isPasswordTouched = true" />
                 </FormControl>
                 <FormMessage class="col-span-4 col-start-3" />
               </FormItem>
@@ -178,12 +171,8 @@ const roleOptions = roles.map(({ label, value }) => ({
               <FormItem class="grid grid-cols-6 items-center space-y-0 gap-x-4 gap-y-1">
                 <FormLabel class="col-span-2 text-end">确认密码</FormLabel>
                 <FormControl>
-                  <PasswordInput
-                    v-model="(form.confirmPassword as string)"
-                    placeholder="e.g., S3cur3P@ssw0rd"
-                    class="col-span-4"
-                    :disabled="!isPasswordTouched"
-                  />
+                  <PasswordInput v-model="(form.confirmPassword as string)" placeholder="e.g., S3cur3P@ssw0rd"
+                    class="col-span-4" :disabled="!isPasswordTouched" />
                 </FormControl>
                 <FormMessage class="col-span-4 col-start-3" />
               </FormItem>

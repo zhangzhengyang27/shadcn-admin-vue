@@ -78,7 +78,7 @@ const roleOptions = roles.map(({ label, value }) => ({
             <FormItem>
               <FormLabel>邮箱</FormLabel>
               <FormControl>
-                <Input v-model="form.email" type="email" placeholder="eg: john.doe@gmail.com" />
+                <Input v-model="form.email" type="email" placeholder="eg: xiaoye@gmail.com" />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -87,12 +87,8 @@ const roleOptions = roles.map(({ label, value }) => ({
           <FormField name="role">
             <FormItem>
               <FormLabel>角色</FormLabel>
-              <SelectDropdown
-                :default-value="form.role"
-                @value-change="(val: string) => { form.role = val }"
-                placeholder="选择角色"
-                :items="roleOptions"
-              />
+              <SelectDropdown :default-value="form.role" @value-change="(val: string) => { form.role = val }"
+                placeholder="选择角色" :items="roleOptions" />
               <FormMessage />
             </FormItem>
           </FormField>
@@ -101,11 +97,7 @@ const roleOptions = roles.map(({ label, value }) => ({
             <FormItem class="">
               <FormLabel>描述（可选）</FormLabel>
               <FormControl>
-                <Textarea
-                  v-model="form.desc"
-                  class="resize-none"
-                  placeholder="添加个人备注到邀请中（可选）"
-                />
+                <Textarea v-model="form.desc" class="resize-none" placeholder="添加个人备注到邀请中（可选）" />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -117,7 +109,8 @@ const roleOptions = roles.map(({ label, value }) => ({
           <Button variant="outline">取消</Button>
         </DialogClose>
         <Button type="submit" form="user-invite-form">
-          邀请 <Send />
+          邀请
+          <Send />
         </Button>
       </DialogFooter>
     </DialogContent>
